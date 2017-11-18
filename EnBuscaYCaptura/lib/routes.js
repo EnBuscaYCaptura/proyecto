@@ -15,6 +15,10 @@ Router.route('/', function () {
     this.render('home');
 });
 
+Router.route('/inicio', {
+    name: 'inicio'
+});
+
 Router.route('/agregarTesoro', {
     name: 'agregarTesoro'
 });
