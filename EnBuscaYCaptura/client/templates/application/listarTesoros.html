@@ -1,0 +1,10 @@
+<template name="listarTesoros">
+    <div class="row">
+        <ul class="list-unstyled">
+        {{#each tesorosGuardados}}
+            {{> tesoro}}
+        {{/each}}
+        </ul>
+    </div>
+    <a href="/" class="btn btn-danger">Volver</a>
+</template>

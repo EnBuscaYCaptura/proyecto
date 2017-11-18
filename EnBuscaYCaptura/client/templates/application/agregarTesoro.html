@@ -1,0 +1,30 @@
+<template name="agregarTesoro">
+	<div class="row">
+        <h1 class="text-center">Agregar un nuevo tesoro</h1>
+        <form class="nuevo-tesoro">
+            <div class="form-group">
+    			<label for="nombre">Nombre del tesoro</label>
+    			<input type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombre">
+            </div>
+            <div class="form-group">
+    			<label for="descripcion">Descripcion del tesoro</label>
+    			<textarea name="descripcion" class="form-control" id="descripcion" placeholder="Descripcion"></textarea>
+            </div>
+            <div class="form-group">
+    			<label for="clave">Clave del tesoro</label>
+    			<input type="text" name="clave" id="clave" class="form-control" placeholder="Clave">
+            </div>
+            <div class="form-group">
+                <label for="latitud">Latitud del tesoro</label>
+    			<input type="text"  name="latitud" id="latitud" class="form-control" placeholder="Latitud">
+            </div>
+            <div class="form-group">
+                <label for="longitud">Longitud del tesoro</label>
+    			<input type="text" name="longitud" id="longitud" class="form-control" placeholder="Longitud">
+            </div>
+		  <button type="submit" class="btn btn-success">Guardar</button>
+          <button type="reset" class="btn btn-warning">Cancelar</button>
+          <a href="/" class="btn btn-danger">Volver</a>
+	   </form>
+    </div>
+</template>
