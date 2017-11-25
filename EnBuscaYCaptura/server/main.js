@@ -1,7 +1,8 @@
-import {
-  Meteor
+import { 
+  Meteor 
 } from 'meteor/meteor';
 //import '../imports/api/tesoros.js';
+
 
 Meteor.startup(() => {
   SSLProxy({
@@ -28,5 +29,37 @@ Meteor.methods({
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     var d = R * c;
     return d.toFixed(3); //Retorna tres decimales
-  }
+  },
+
+    anadirEmail: function(email) {
+        'use strict';
+
+        Accounts.addEmail(this.userId, email);
+        Accounts.sendVerificationEmail(this.userId, email);
+        return true;
+    },
+
+    eliminarEmail : function(email) {
+      'use strict';
+      Accounts.removeEmail(this.userId, email);
+      return true;
+    },
+
+    cambiarPass : function (contrasena) {
+      'use strict';
+      Accounts.setPassword(this.userId, contrasena, { logout: false });
+      return true;
+    },
+
+    /*sendVerificationLink: function(email,id){
+    Accounts.sendVerificationEmail(id,email);
+  }*/
+    
 });
+
+/*Accounts.urls.verifyEmail = function(token){
+  return Meteor.absoluteUrl('verify-email/'+token);
+}*/
+
+
+
