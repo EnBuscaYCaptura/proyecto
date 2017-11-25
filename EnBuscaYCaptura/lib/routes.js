@@ -15,18 +15,24 @@ Router.route('/', function () {
     this.render('home');
 });
 
-Router.route('/inicio', {
-    name: 'inicio'
-});
-
 Router.route('/agregarTesoro', {
     name: 'agregarTesoro'
 });
 Router.route('/listarTesoros', {
     name: 'listarTesoros'
 });
-Router.route('/tesoro/:_id', {
-    name: 'mapa',
-   // data: function() { return tesoro.findOne(this.params._id); }
+Router.route('/juego/:_id', {
+    name: 'visorMapa',
+   /* onAfterAction: function () {
+        juego.insert(
+                tesoro: _id,
+                usuario: Meteor.userid(),
+                latitud: 0,
+                longitud: 0,
+                createdAt: new Date(),
+                encontrado: false
+            );
+    }*/
+    data: function() { return juego.findOne({_id: this.params._id}); }
 });
 //Router.onBeforeAction('dataNotFound', {only: 'agregarTesoro'});

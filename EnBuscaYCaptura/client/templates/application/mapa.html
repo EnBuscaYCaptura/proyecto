@@ -1,4 +1,16 @@
 <template name="mapa">
+  <div class="map-container">
+    {{#unless geolocationError}}
+      {{#each juegoGuardado}}
+            <input type="hidden" name="idJuego" value="{{_id}}"/>
+        {{/each}}
+      {{> googleMap name="map" options=mapOptions}}
+    {{else}}
+      Geolocation failed: {{geolocationError}}
+    {{/unless}}
+  </div>
+</template>
+<!--<template name="mapa">
   <div id="map"></div>
     <script>
         posicion = {};
@@ -33,4 +45,4 @@
   <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1jsmXmxDgSIamZGd9bi7KDE76A_KD0oY&callback=initMap">
     </script>
-</template>
+</template>-->

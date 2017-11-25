@@ -1,79 +1,75 @@
-//import '../templates/application/distancia.html'
+//import { GoogleMaps } from 'meteor/dburles:google-maps';
+//import { Meteor } from 'meteor/meteor';
 
-Template.mapa.onCreated(function bodyOnCreated() {
-    //this.state = new ReactiveDict();
-    Meteor.subscribe('tesoros');
+ import { Template } from 'meteor/templating';
+
+
+if (Meteor.isClient) {
+  var MAP_ZOOM = 17;
+
+  Meteor.startup(function() {
+    GoogleMaps.load({key: "AIzaSyD1jsmXmxDgSIamZGd9bi7KDE76A_KD0oY"});
+  });
+
+  Template.mapa.onCreated(function() {
     Meteor.subscribe('juego');
-    posicion = {};
-});
+    var self = this;
 
+    GoogleMaps.ready('map', function(map) {
+      var marker;
 
-/*Template.mapa.helpers({
-    guardar() {
-        var url = window.location.pathname.split("/");
-        var idtesoro=url[url.length -1];
-        var tesoro = tesoros.find({
-                '_id': idtesoro
-            });
-        console.log(idtesoro);
-        console.log(tesoro.nombre);
-        console.log(tesoro.count());
-        if (tesoro.count() == 1){
-            console.log("insertamos en mongo");
-           º juego.insert({
-                latitud: 0,
-                longitud: 0,
-                tiempo: 0,
-                usuario: 1,
-                tesoro: idtesoro,
-                encontrado:0,
-            });
-        } else {
-            console.log("URL invalida");
+      // Create and move the marker when latLng changes.
+      self.autorun(function() {
+        var latLng = Geolocation.latLng();
+        if (! latLng)
+          return;
+
+        // If the marker doesn't yet exist, create it.
+        if (! marker) {
+          marker = new google.maps.Marker({
+            position: new google.maps.LatLng(latLng.lat, latLng.lng),
+            map: map.instance
+          });
         }
-    }
-});
-   /*     
-        //var todos = tesoros.find();
-        //latLng = Geolocation.currentLocation().coords;
-        //console.log(latLng);
-     /*   if (!latLng)
-            return;
-        juego.insert({
-            latitud: latLng.latitud,
-            longitud: latLng.longitude,
-            tiempo: 0,
-            usuario,
-            tesoro,
-            encontrado:0,
-        });
+        // The marker already exists, so we'll just change its position.
+        else {
+          marker.setPosition(latLng);
+        }
 
-        /*navigator.geolocation.getCurrentPosition(function(pos) {
-            //console.log(pos.coords);
-            debugger;
-            alert("aaaa");
-            return pos.coords;
-        }, function(err) {
-            debugger;
-            console.warn('ERROR(' + err.code + '): ' + err.message);
-            //distancias();
-        }, {
-            enableHighAccuracy: true,
-            //timeout: 5000,
-            maximumAge: 0
-        });
-        /*var a = (todos.forEach(function(elem) {
-            console.log("entro");
-            console.log("id:"+elem._id +" latitud:"+ latLng.latitude +" longitud:"+ latLng.longitude);
-            debugger;
-            console.log(Meteor.call('tesoros.distancia', elem._id, latLng.latitude, latLng.longitude));
-            console.log("return");
-            return Meteor.call('tesoros.distancia', elem._id, latLng.latitude, latLng.longitude);
-        }));
-        console.log("fuera");
-        console.log(a);
-        // return todos.forEach(function(elem) {
-        //   return Meteor.call('tesoros.distancia', elem._id, latLng.lat, latLng.lng);
-        //});
+        // Center and zoom the map view onto the current position.
+        map.instance.setCenter(marker.getPosition());
+        map.instance.setZoom(MAP_ZOOM);
+console.log("se mueve");        
+        //Guardar la posicion en la coleccion cada 5 segundos
+        setTimeout(function(){
+            if($(".idJuego") && $(".idJuego").val() !== ""){
+                var idJuego = $(".idJuego").val();
+                juego.update(idJuego, { $set: { latitud: latLng.lat, longitud: latLng.lng } });
+            }
+        }, 5000);
+        
+      });
+    });
+  });
+
+  Template.mapa.helpers({
+    juegoGuardado() {
+        return juego.find({}, { sort: { createdAt: -1 } });
+      },
+    geolocationError: function() {
+      var error = Geolocation.error();
+      return error && error.message;
+    },
+    mapOptions: function() {
+      var latLng = Geolocation.latLng();
+      GoogleMaps.load({key: "AIzaSyD1jsmXmxDgSIamZGd9bi7KDE76A_KD0oY"});
+      // Initialize the map once we have the latLng.
+      if (GoogleMaps.loaded() && latLng) {
+        return {
+          center: new google.maps.LatLng(latLng.lat, latLng.lng),
+          zoom: MAP_ZOOM
+        };
+      }
     }
-});*/
+  });
+}

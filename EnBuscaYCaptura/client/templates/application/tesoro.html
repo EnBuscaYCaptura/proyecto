@@ -1,5 +1,22 @@
 <template name="tesoro">
   <li>
-    <a href="/tesoro/{{_id}}"><span class="text"><strong>{{nombre}}</strong> - {{descripcion}}</span></a>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-modal-sm-{{_id}}">{{nombre}}</button>
+
+    <div class="modal fade bs-modal-sm-{{_id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">{{nombre}}</h4>
+          </div>
+          <div class="modal-body">
+            <p>{{descripcion}}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Atras</button>
+            <button type="button" class="btn btn-primary iniciar-busqueda" data-dismiss="modal">Buscar tesoro</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </li>
 </template>
