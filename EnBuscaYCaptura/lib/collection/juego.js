@@ -73,6 +73,10 @@ if (Meteor.isServer) {
             });
         },
         'juego.abandonar' (idJuego) {
+            var tesoro = tesoros.find({
+                _id: idJuego
+            });
+            Meteor.call('tesoros.setUsado', tesoro.fetch()[0]._id, false);
             juego.update(idJuego, {
                 $set: {
                     abandonado: true
