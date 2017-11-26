@@ -25,6 +25,6 @@ tarang:ssl
 accounts-password
 msavin:mongol
 accounts-ui
-
 email
 goltfisch:jquery-backstretch
+dburles:google-maps

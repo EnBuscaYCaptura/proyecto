@@ -18,15 +18,16 @@ Template.agregarTesoro.events({
     const longitud = target.longitud.value;
  
     // Insert a task into the collection
-    //Meteor.call('tesoros.insert', nombre, descripcion, clave, latitud, longitud);
-    tesoros.insert({
+    Meteor.call('tesoros.insert', nombre, descripcion, clave, latitud, longitud);
+    /*tesoros.insert({
       nombre,
       descripcion,
       clave,
       latitud,
       longitud,
       createdAt: new Date(),
-    });
+      usado: false
+    });*/
     // Clear form
     target.nombre.value = '';
     target.descripcion.value = ''; 

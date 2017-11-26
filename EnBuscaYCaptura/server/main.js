@@ -33,6 +33,7 @@ Meteor.methods({
     return d.toFixed(3); //Retorna tres decimales
   },
 
+
     anadirEmail: function(email) {
         'use strict';
 
@@ -65,3 +66,15 @@ Meteor.methods({
 
 
 
+
+  /*juego.find().observeChanges({
+   added: function (id, fields) {
+       runFunction();
+   },
+   changed: function (id, fields) {
+       runFunction();
+   },
+   removed: function (id) {
+       runFunction();
+  }
+})*/
