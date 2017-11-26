@@ -1,6 +1,8 @@
 import { 
   Meteor 
 } from 'meteor/meteor';
+import { Accounts } from 'meteor/accounts-base';
+import { Email } from 'meteor/email';
 //import '../imports/api/tesoros.js';
 
 

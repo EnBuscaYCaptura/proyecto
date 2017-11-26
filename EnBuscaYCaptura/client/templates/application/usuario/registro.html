@@ -1,38 +1,77 @@
 <template name="registro">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-xs-12 contenedor-formulario">
+            <div class="cabecera-formulario">
+                <div class="cabecera-formulario-izq col-xs-8">
+                    <h1>Registrate</h1>
+                    <p>Y encuentra el tesoro perdido...</p>
+                </div>
+                <div class="cancelar-derecha col-xs-4">
+                    <a class="btn btn-oscuro btn-sm" href="/">X</a>
+                </div>
+                
+            </div>
+        
+            <div class="formulario-principal">
+                <form class="FormularioRegistro">
+                    <div class="formulario-celdas">
+                        <div class="form-group col-xs-12">
+                            <input placeholder="Email" type="email" id="email" value="">
+                        </div>
+
+                        <div class="form-group col-xs-12">
+                            <input placeholder="Nombre de acceso a la app" type="text" id="nombreAcceso" value="">
+                        </div>
+
+                        <div class="form-group col-xs-12">
+                            <input placeholder="Nombre de usuario" type="text" id="nombreUsuario" value="">
+                        </div>
+
+                        <div class="form-group col-xs-12">
+                            <input placeholder="Contraseña" type="password"  id="contrasena" value="">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-oscuro btn-sm btn-block">Registrar</button>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</template>
+
+<!--
+<div class="col-xs-12 form-box">
             <form class="FormularioRegistro">
-                <div class="panel panel-default">
+                <div class="panel">
                     <div class="panel-heading">
                         <h3>Registro</h3>
                     </div>
                     <div class="panel-body">
-                        <div class="form-group col-lg-12">
-                            <label>Email</label>
+                        <div class="form-group col-xs-12">
+                            <label for="email" class='control-label'>Email</label>
                             <input type="email"  class="form-control" id="email" value="">
                         </div>
  
-                        <div class="form-group col-lg-6">
-                            <label>Nombre de acceso a la app</label>
+                        <div class="form-group col-xs-12">
+                            <label for="nombreAcceso" class='control-label'>Nombre de acceso a la app</label>
                             <input type="text" name="" class="form-control" id="nombreAcceso" value="">
                         </div>
  
-                        <div class="form-group col-lg-6">
-                            <label>Nombre de usuario</label>
+                        <div class="form-group col-xs-12">
+                            <label for="nombreUsuario" class='control-label'>Nombre de usuario</label>
                             <input type="text" name="" class="form-control" id="nombreUsuario" value="">
                         </div>
  
-                        <div class="form-group col-lg-12">
-                            <label>Contraseña</label>
+                        <div class="form-group col-xs-12">
+                            <label for="contrasena" class='control-label'>Contraseña</label>
                             <input type="password" name="" class="form-control" id="contrasena" value="">
                         </div>
                     </div>
                     <div class="panel-footer">
-                        <button type="submit" class="btn btn-primary">Registrar</button>
+                        <button type="submit" class="btn btn-primary btn-sm btn-block">Registrar</button>
                         <a href="/">Retroceder</a>
                     </div>
                 </div>
             </form>
         </div>
-    </div>
-</template>
+-->

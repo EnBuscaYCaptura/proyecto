@@ -1,4 +1,30 @@
 import { Accounts } from 'meteor/accounts-base';
+$(document).ready(function() {
+    
+    /*
+        Fullscreen background
+    */
+    $.backstretch("/img/fondo.jpeg");
+
+});/*
+Meteor.startup(function() {
+    $.backstretch("/img/fondo.jpeg");
+});
+/*Template.registro.onCreated(function(){
+     $(document).ready(function() {
+       $.backstretch("/img/fondo.jpeg");
+    });
+});
+Template.modificarUsuario.onCreated(function(){
+     $(document).ready(function() {
+       $.backstretch("/img/fondo.jpeg");
+    });
+});
+Template.acceso.onCreated(function(){
+     $(document).ready(function() {
+       $.backstretch("/img/fondo.jpeg");
+    });
+});*/
 /*
     username: a unique String identifying the user.
 

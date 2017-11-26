@@ -3,3 +3,69 @@
     height: 400px;
     width: 100%;
 }
+
+.btn-oscuro {
+    background: rgba(0, 0, 0, 0.58);
+    color: white;
+    letter-spacing: 3px
+}
+.cancelar-derecha {
+    padding-top: 5px;
+    font-size: 66px;
+    color: #fff;
+    line-height: 100px;
+    text-align: right;
+    padding-right: 0;
+}
+.cancelar-derecha a {
+    vertical-align: top;
+    background: rgba(0, 0, 0, 0.35);
+}
+.contenedor-formulario {
+    margin-top: 35px;
+}
+
+.cabecera-formulario {
+    overflow: hidden;
+    padding: 0 25px 15px 25px;
+    background: rgba(0, 0, 0, 0.35);
+    text-align: left;
+}
+
+.cabecera-formulario-izq {
+    padding-top: 25px;
+}
+.formulario-principal {
+    padding: 25px;
+    background: rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.formulario-celdas input
+{
+    width: 100%;
+    padding: 5px;
+    background: 0;
+    border: 0;
+    border-bottom: 1.7px solid #2b1203;
+    outline: 0;
+    font-style: italic;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+input::-webkit-input-placeholder {
+color: #333 !important;
+}
+ 
+input:-moz-placeholder { /* Firefox 18- */
+color: #333 !important;  
+}
+ 
+input::-moz-placeholder {  /* Firefox 19+ */
+color: #333 !important;  
+}
+ 
+input:-ms-input-placeholder {  
+color: #333 !important;  
+}
