@@ -1,10 +1,31 @@
 <template name="mapa">
   <div class="map-container">
     {{#unless geolocationError}}
+      {{#if avisoEncontrado}}
+      <form class="avisoEncontrado">
+        <div class="panel panel-default">
+          <div class="panel-heading">Estas cerca de un tesoro</div>
+          <div class="panel-body">
+            <input type="text" name="clave" placeholder="Introduce la clave del tesoro" />
+            <input type="submit" name="enviar" class="btn btn-primary" value="Comprobar"/>
+          </div>
+        </div>
+      </form>
+      {{/if}}
+      {{#if horaFinal}}
+        <div class="panel panel-default encontrado">
+          <div class="panel-heading">Felicidades!!!</div>
+          <div class="panel-body">
+            <span>Has encontrado el tesoro</span>
+            <button class="btn btn-primary volver">Volver</button>
+          </div>
+        </div>
+      {{/if}}
       {{#each juegoGuardado}}
-            <input type="hidden" name="idJuego" value="{{_id}}"/>
-        {{/each}}
+        <input type="hidden" name="idJuego" value="{{_id}}"/>
+      {{/each}}
       {{> googleMap name="map" options=mapOptions}}
+      <button class="btn btn-danger abandonar">Abandonar</button>
     {{else}}
       Geolocation failed: {{geolocationError}}
     {{/unless}}

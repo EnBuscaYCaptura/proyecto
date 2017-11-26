@@ -28,5 +28,16 @@ Meteor.methods({
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     var d = R * c;
     return d.toFixed(3); //Retorna tres decimales
+  },
+  /*juego.find().observeChanges({
+   added: function (id, fields) {
+       runFunction();
+   },
+   changed: function (id, fields) {
+       runFunction();
+   },
+   removed: function (id) {
+       runFunction();
   }
+})*/
 });
