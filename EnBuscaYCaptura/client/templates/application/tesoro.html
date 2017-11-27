@@ -1,14 +1,6 @@
 <template name="tesoro">
-  
-  <div class="panel panel-default panel-tesoros-principal">
-    <div class="panel-heading panel-tesoros-head">{{nombre}}</div>
-    <div class="panel-body">
-      <p class="pull-left">{{descripcion}}</p>
-      <div class="pull-right action-buttons">
-        <button type="button" class="btn boton-tesoros" data-toggle="modal" data-target=".bs-modal-sm-{{_id}}">Elegir</button>
-      </div>
-    </div>
-  </div>
+  <li>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-modal-sm-{{_id}}">{{nombre}}</button>
 
     <div class="modal bs-modal-sm-{{_id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
       <div class="modal-dialog modal-sm" role="document">
@@ -26,9 +18,5 @@
         </div>
       </div>
     </div>
-
+  </li>
 </template>
-
-<!--
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-modal-sm-{{_id}}">{{nombre}}</button>
--->

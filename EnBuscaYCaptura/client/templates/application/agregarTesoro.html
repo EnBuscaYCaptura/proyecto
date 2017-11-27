@@ -1,105 +1,30 @@
 <template name="agregarTesoro">
 	<div class="row">
-        <div class="cabecera-formulario">
-            <div class="cabecera-formulario-izq col-xs-8">
-                <h1>Agregar tesoro</h1>
-            </div>
-            <div class="cancelar-derecha col-xs-4">
-                <a class="btn btn-oscuro btn-sm" href="/">X</a>
-            </div>
-        </div>
-        <div class="formulario-principal">
-            <form class="FormularioRegistro">
-                <div class="formulario-celdas">
-                    <div class="form-group col-xs-12">
-                        <label for="nombre">Nombre del tesoro</label>
-                        <input placeholder="Nombre del tesoro" type="text" name="nombre" id="nombre">
-                    </div>
-                    <div class="form-group col-xs-12">
-                        <label for="descripcion">Descripcion del tesoro</label>
-                        <textarea name="descripcion" id="descripcion" placeholder="Descripcion"></textarea>
-                    </div>
-
-                    <div class="form-group col-xs-12">
-                        <label for="clave">Clave del tesoro</label>
-                        <input type="text" name="clave" id="clave" placeholder="Clave">
-                    </div>
-
-                    <div class="form-group col-xs-12">
-                        <label for="latitud">Latitud del tesoro</label>
-                        <input type="text"  name="latitud" id="latitud" placeholder="Latitud">
-                    </div>
-
-                    <div class="form-group col-xs-12">
-                        <label for="longitud">Longitud del tesoro</label>
-                        <input type="text" name="longitud" id="longitud" placeholder="Longitud">
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-oscuro btn-sm btn-block">Guardar</button>
-                <button type="reset" class="btn btn-oscuro btn-sm btn-block">Borrar</button>
-            </form>
-        </div>
-    </div>
-</template>
-<!--
-<div class="col-xs-12 contenedor-formulario">
-            <div class="cabecera-formulario">
-                <div class="cabecera-formulario-izq col-xs-8">
-                    <h1>Regístrate</h1>
-                    <p>Y encuentra el tesoro perdido...</p>
-                </div>
-                <div class="cancelar-derecha col-xs-4">
-                    <a class="btn btn-oscuro btn-sm" href="/">X</a>
-                </div>
-            </div>
-            <div class="formulario-principal">
-                <form class="FormularioRegistro">
-                    <div class="formulario-celdas">
-                        <div class="form-group col-xs-12">
-                            <input placeholder="Email" type="email" id="email" value="">
-                        </div>
-                        <div class="form-group col-xs-12">
-                            <input placeholder="Nombre de acceso a la app" type="text" id="nombreAcceso" value="">
-                        </div>
-
-                        <div class="form-group col-xs-12">
-                            <input placeholder="Nombre de usuario" type="text" id="nombreUsuario" value="">
-                        </div>
-
-                        <div class="form-group col-xs-12">
-                            <input placeholder="Contraseña" type="password"  id="contrasena" value="">
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-oscuro btn-sm btn-block">Registrar</button>
-                </form>
-            </div>
-        </div>
--->
-<!--
-<h1 class="text-center">Agregar un nuevo tesoro</h1>
+        <h1 class="text-center">Agregar un nuevo tesoro</h1>
         <form class="nuevo-tesoro">
             <div class="form-group">
-                <label for="nombre">Nombre del tesoro</label>
-                <input type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombre">
+    			<label for="nombre">Nombre del tesoro</label>
+    			<input type="text" name="nombre" class="form-control" id="nombre" placeholder="Nombre">
             </div>
             <div class="form-group">
-                <label for="descripcion">Descripcion del tesoro</label>
-                <textarea name="descripcion" class="form-control" id="descripcion" placeholder="Descripcion"></textarea>
+    			<label for="descripcion">Descripcion del tesoro</label>
+    			<textarea name="descripcion" class="form-control" id="descripcion" placeholder="Descripcion"></textarea>
             </div>
             <div class="form-group">
-                <label for="clave">Clave del tesoro</label>
-                <input type="text" name="clave" id="clave" class="form-control" placeholder="Clave">
+    			<label for="clave">Clave del tesoro</label>
+    			<input type="text" name="clave" id="clave" class="form-control" placeholder="Clave">
             </div>
             <div class="form-group">
                 <label for="latitud">Latitud del tesoro</label>
-                <input type="text"  name="latitud" id="latitud" class="form-control" placeholder="Latitud">
+    			<input type="text"  name="latitud" id="latitud" class="form-control" placeholder="Latitud">
             </div>
             <div class="form-group">
                 <label for="longitud">Longitud del tesoro</label>
-                <input type="text" name="longitud" id="longitud" class="form-control" placeholder="Longitud">
+    			<input type="text" name="longitud" id="longitud" class="form-control" placeholder="Longitud">
             </div>
-          <button type="submit" class="btn btn-success">Guardar</button>
+		  <button type="submit" class="btn btn-success">Guardar</button>
           <button type="reset" class="btn btn-warning">Cancelar</button>
           <a href="/" class="btn btn-danger">Volver</a>
-       </form>
--->
+	   </form>
+    </div>
+</template>
