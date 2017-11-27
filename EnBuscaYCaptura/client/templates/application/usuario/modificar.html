@@ -1,5 +1,37 @@
 <template name="modificarUsuario">
     <div class="row">
+        <div class="col-xs-12 contenedor-formulario">
+            
+            <div class="cabecera-formulario">
+                <div class="cabecera-formulario-izq col-xs-8">
+                    <h1>Modificar datos de usuario</h1>
+                </div>
+                <div class="cancelar-derecha col-xs-4">
+                    <a class="btn btn-oscuro btn-sm" href="/">X</a>
+                </div>
+            </div>
+
+            <div class="formulario-principal">
+                <form class="FormularioModificarUsuario">
+                    <div class="formulario-celdas">
+                        <div class="form-group col-xs-12">
+                            <input placeholder="Email" type="email" id="email" value="">
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <input placeholder="Nombre de usuario" type="text" id="nombreUsuario" value="">
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <input placeholder="Contraseña" type="password" id="contrasena" value="">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-oscuro btn-sm btn-block">Modificar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>
+
+    <!--
         <div class="col-md-6 col-md-offset-3">
             <form class="FormularioModificarUsuario">
                 <div class="panel panel-default">
@@ -27,5 +59,4 @@
                 </div>
             </form>
         </div>
-    </div>
-</template>
+    -->

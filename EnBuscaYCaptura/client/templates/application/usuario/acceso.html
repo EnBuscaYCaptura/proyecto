@@ -1,6 +1,34 @@
 <template name="acceso">
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
+        <div class="col-xs-12 contenedor-formulario">
+            <div class="cabecera-formulario">
+                <div class="cabecera-formulario-izq col-xs-12">
+                    <h1>Acceso</h1>
+                    <p>¿Estás preparado?</p>
+                </div>
+            </div>
+            <div class="formulario-principal">
+                <form class="FormularioAcceso">
+                    <div class="formulario-celdas">
+                        <div class="form-group col-xs-12">
+                            <input placeholder="Usuario" type="text" id="nombreAcceso" value="">
+                        </div>
+                        <div class="form-group col-xs-12">
+                            <input placeholder="Contraseña" type="password" id="contrasena" value="">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-oscuro btn-sm btn-block">Acceder</button>
+                </form>
+            </div>
+            <div class="formulario-pie">
+                <p>Y si aún no tienes cuenta, <a href="registro">regístrate.</a></p>
+            </div>
+        </div>
+    </div>
+</template>
+
+    <!--
+            <div class="col-md-6 col-md-offset-3">
             <form class="FormularioAcceso">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -18,12 +46,11 @@
                     </div>
                     <div class="panel-footer">
                         <button type="submit" class="btn btn-primary">Acceder</button>
-                        <!--<button  class="btn btn-primary btn-facebook">Facebook Login</button>-->
+                        <button  class="btn btn-primary btn-facebook">Facebook Login</button>
                         <a href="/">Retroceder</a>
                     </div>
                 </div>
             </form>
         </div>
-    </div>
-</template>
+    -->
  
