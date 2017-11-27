@@ -1,7 +1,7 @@
 tesoros = new Mongo.Collection('tesoros');
 
 if (Meteor.isServer) {
-    Meteor.publish('tesoros', function tasksPublication() {
+    Meteor.publish('tesoros', function tesorosPublication() {
         return tesoros.find({}, {
             fields: {
                 clave: false,

@@ -21,10 +21,10 @@ insecure@1.0.7                # Allow all DB writes from clients (for prototypin
 iron:router
 twbs:bootstrap
 mdg:geolocation
-tarang:ssl
 accounts-password
 msavin:mongol
 accounts-ui
 email
 goltfisch:jquery-backstretch
 dburles:google-maps
+nourharidy:ssl

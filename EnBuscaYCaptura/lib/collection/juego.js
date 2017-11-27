@@ -1,7 +1,7 @@
 juego = new Mongo.Collection('juego');
 
 if (Meteor.isServer) {
-    Meteor.publish('juego', function tasksPublication(idJugador, bEncontrado, bAbandonado) {
+    Meteor.publish('juego', function juegoPublication(idJugador, bEncontrado, bAbandonado) {
         return juego.find({
             encontrado: bEncontrado,
             abandonado: bAbandonado,
@@ -73,10 +73,11 @@ if (Meteor.isServer) {
             });
         },
         'juego.abandonar' (idJuego) {
-            var tesoro = tesoros.find({
+            var tesoro = juego.find({
                 _id: idJuego
             });
-            Meteor.call('tesoros.setUsado', tesoro.fetch()[0]._id, false);
+            //Meteor.call('tesoros.setUsado', tesoro.fetch()[0].idTesoro, false);
+            tesoros.update(tesoro.fetch()[0].idTesoro, { $set: { usado: false } });
             juego.update(idJuego, {
                 $set: {
                     abandonado: true
