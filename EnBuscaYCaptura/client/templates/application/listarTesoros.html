@@ -1,13 +1,26 @@
 <template name="listarTesoros">
-    <h1>Bienvenido {{currentUser.profile.nombreUsuario}}</h1>
+    <div class="pull-right">
+            <button class="btn btn-oscuro btn-sm btn-logout">Salir</button>
+    </div>
     <div class="row">
-        <ul class="list-unstyled">
+        <div class="col-xs-12 text-center">
+            <h1>Bienvenido <strong>{{currentUser.profile.nombreUsuario}}</strong></h1>
+            <div class="textoInfoListadoTesoros">
+                <p>Elige un tesoro y a por el!</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 fondo-tesoros">
+        
         {{#each tesorosGuardados}}
             {{> tesoro}}
         {{/each}}
-        </ul>
+        <a href="/modificar" class="btn btn-oscuro btn-sm btn-block">Modificar Usuario</a>
+        <a class="btn btn-oscuro btn-sm btn-block" href="/agregarTesoro">Agregar tesoros</a>
     </div>
-    <button class="btn btn-danger btn-logout">Salir</button>
-    <a href="/modificar" class="btn btn-danger">Modificar Usuario</a>
-    <a class="btn btn-default" href="/agregarTesoro">Agregar tesoros</a>
 </template>
+
+<!--
+<h1>Bienvenido {{currentUser.profile.nombreUsuario}}</h1>
+-->
+
