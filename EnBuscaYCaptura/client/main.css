@@ -3,7 +3,9 @@
     height: 400px;
     width: 100%;
 }
-
+.gmnoprint{
+    display: none;
+}
 
 .btn-oscuro {
     background: rgba(0, 0, 0, 0.58);

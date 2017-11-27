@@ -44,12 +44,13 @@ if (Meteor.isClient) {
                 map.instance.setCenter(marker.getPosition());
                 map.instance.setZoom(MAP_ZOOM);
                 //Guardar la posicion en la coleccion cada 5 segundos
-                setTimeout(function() {
-                    if ($("[name='idJuego']") && $("[name='idJuego']").val() !== "" && latLng) {
+               // setTimeout(function() {
+                    if ($("[name='idJuego']") && $("[name='idJuego']").val() !== "" 
+                        && latLng.lat !== undefined && latLng.lng !== undefined) {
                         var idJuego = $("[name='idJuego']").val();
                         Meteor.call('juego.setPosicion', idJuego, latLng.lat, latLng.lng);
                     }
-                }, 5000);
+              //  }, 5000);
             });
         });
     });
@@ -69,6 +70,7 @@ if (Meteor.isClient) {
             });
             // Initialize the map once we have the latLng.
             if (GoogleMaps.loaded() && latLng) {
+                //$('.gmnoprint').hide();
                 return {
                     center: new google.maps.LatLng(latLng.lat, latLng.lng),
                     zoom: MAP_ZOOM

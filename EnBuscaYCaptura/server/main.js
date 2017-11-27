@@ -1,13 +1,17 @@
-import { 
-  Meteor 
+import {
+  Meteor
 } from 'meteor/meteor';
-import { Accounts } from 'meteor/accounts-base';
-import { Email } from 'meteor/email';
+import {
+  Accounts
+} from 'meteor/accounts-base';
+import {
+  Email
+} from 'meteor/email';
 //import '../imports/api/tesoros.js';
 
 
 Meteor.startup(() => {
-  SSLProxy({
+  /*SSLProxy({
        port: 443, //or 443 (normal port/requires sudo)
        ssl : {
             key: Assets.getText("enbuscaycaptura.key"),
@@ -16,8 +20,10 @@ Meteor.startup(() => {
             //Optional CA
             //Assets.getText("ca.pem")
        }
-    });
-  });
+    });*/
+  SSL('C:/Users/Cristian/Desktop/Proyecto/EnBuscaYCaptura/private/buscacaptura.key', 
+    'C:/Users/Cristian/Desktop/Proyecto/EnBuscaYCaptura/private/buscacaptura.crt', 443);
+});
 
 Meteor.methods({
   'getKilometros' (lat1, lon1, lat2, lon2) {
@@ -34,30 +40,32 @@ Meteor.methods({
   },
 
 
-    anadirEmail: function(email) {
-        'use strict';
+  anadirEmail: function(email) {
+    'use strict';
 
-        Accounts.addEmail(this.userId, email);
-        Accounts.sendVerificationEmail(this.userId, email);
-        return true;
-    },
+    Accounts.addEmail(this.userId, email);
+    Accounts.sendVerificationEmail(this.userId, email);
+    return true;
+  },
 
-    eliminarEmail : function(email) {
-      'use strict';
-      Accounts.removeEmail(this.userId, email);
-      return true;
-    },
+  eliminarEmail: function(email) {
+    'use strict';
+    Accounts.removeEmail(this.userId, email);
+    return true;
+  },
 
-    cambiarPass : function (contrasena) {
-      'use strict';
-      Accounts.setPassword(this.userId, contrasena, { logout: false });
-      return true;
-    },
+  cambiarPass: function(contrasena) {
+    'use strict';
+    Accounts.setPassword(this.userId, contrasena, {
+      logout: false
+    });
+    return true;
+  },
 
-    /*sendVerificationLink: function(email,id){
+  /*sendVerificationLink: function(email,id){
     Accounts.sendVerificationEmail(id,email);
   }*/
-    
+
 });
 
 /*Accounts.urls.verifyEmail = function(token){
@@ -66,8 +74,7 @@ Meteor.methods({
 
 
 
-
-  /*juego.find().observeChanges({
+/*juego.find().observeChanges({
    added: function (id, fields) {
        runFunction();
    },

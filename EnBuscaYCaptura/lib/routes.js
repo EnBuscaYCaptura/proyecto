@@ -17,7 +17,12 @@ Router.route('/modificar' , function () {
 }); 
  
 Router.route('/', function () {
+     if(isHTTPS()){
     this.render('home');
+  } else {
+    switchHTTPS();
+  }
+    //this.render('home');
 });
 
 /*Router.route('/', {
