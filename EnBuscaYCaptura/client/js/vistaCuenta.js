@@ -131,3 +131,12 @@ Template.modificarUsuario.events({
         //Meteor.users.update({ _id: Meteor.userId(),  $set: { 'emails.address': emailMod }});
     }
 });
+
+
+    AccountController = RouteController.extend({
+    verifyEmail: function () {
+        Accounts.verifyEmail(this.params.token, function () {
+            Router.go('/');
+        });
+    }
+});

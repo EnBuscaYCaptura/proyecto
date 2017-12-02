@@ -21,8 +21,19 @@ Meteor.startup(() => {
             //Assets.getText("ca.pem")
        }
     });*/
-  SSL('C:/Users/Cristian/Desktop/Proyecto/EnBuscaYCaptura/private/buscacaptura.key', 
-    'C:/Users/Cristian/Desktop/Proyecto/EnBuscaYCaptura/private/buscacaptura.crt', 443);
+  smtp = {
+    username: 'enbuscaycaptura.daw@gmail.com',
+    password: 'proyectodaw2017',
+    server:   'smtp.gmail.com',
+    port: 587
+  };
+
+  process.env.MAIL_URL = 'smtp://' + encodeURIComponent(smtp.username) + ':' + encodeURIComponent(smtp.password) + '@' + encodeURIComponent(smtp.server) + ':' + smtp.port;
+    //process.env.MAIL_URL = "smtp://enbuscaycaptura.daw@gmail.com:proyectodaw2017@smtp.gmail.com:587";
+
+    
+  SSL('D:/PROYECTODAW/repositorio/EnBuscaYCaptura/private/buscacaptura.key', 
+    'D:/PROYECTODAW/repositorio/EnBuscaYCaptura/private/buscacaptura.crt', 443);
 });
 
 Meteor.methods({
@@ -45,6 +56,12 @@ Meteor.methods({
 
     Accounts.addEmail(this.userId, email);
     Accounts.sendVerificationEmail(this.userId, email);
+    Email.send({
+      to: "to.address@email.com",
+      from: "from.address@email.com",
+      subject: "Example Email",
+      text: "The contents of our email in plain text.",
+    });
     return true;
   },
 

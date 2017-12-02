@@ -71,3 +71,22 @@ AccountController = RouteController.extend({
         });
     }
 });*/
+
+Router.map(function () {
+    
+    this.route('verifyEmail', {
+        controller: 'AccountController',
+        path: '/verify-email/:token',
+        action: 'verifyEmail'
+    });
+
+    this.route('verified', {
+        path: '/verified',
+        template: 'verified'
+    });
+
+    this.route('checkemail', {
+        path: '/checkemail',
+        template: 'checkemail'
+    });
+});
