@@ -46,7 +46,7 @@ if (Meteor.isClient) {
                 //Guardar la posicion en la coleccion cada 5 segundos
                // setTimeout(function() {
                     if ($("[name='idJuego']") && $("[name='idJuego']").val() !== "" 
-                        && latLng.lat !== undefined && latLng.lng !== undefined) {
+                        && latLng && latLng.lat !== undefined && latLng.lng !== undefined) {
                         var idJuego = $("[name='idJuego']").val();
                         Meteor.call('juego.setPosicion', idJuego, latLng.lat, latLng.lng);
                     }
@@ -99,6 +99,12 @@ if (Meteor.isClient) {
         'click .abandonar': function(event) {
             var idJuego = $("[name='idJuego']").val();
             Meteor.call('juego.abandonar', idJuego);
+            Router.go('/');
+        },
+        'click .btn-logout':function(){
+            var idJuego = $("[name='idJuego']").val();
+            Meteor.call('juego.abandonar', idJuego);
+            Meteor.logout();
             Router.go('/');
         }
     });

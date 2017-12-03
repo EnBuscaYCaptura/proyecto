@@ -60,6 +60,7 @@ if (Meteor.isServer) {
             if (clave === tesoro.fetch()[0].clave) {
                 juego.update(idJuego, {
                     $set: {
+                        avisoEncontrado: false,
                         horaFinal: new Date()
                     }
                 });
