@@ -46,6 +46,7 @@
         <input type="hidden" name="idJuego" value="{{_id}}"/>
       {{/each}}
       {{> googleMap name="map" options=mapOptions}}
+      <div class="distancia"  style="background-color:{{colorDistancia}}">Indicador de distancia</div>
     {{else}}
       Geolocation failed: {{geolocationError}}
     {{/unless}}

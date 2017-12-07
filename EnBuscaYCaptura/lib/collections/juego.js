@@ -27,13 +27,7 @@ if (Meteor.isServer) {
             });
         },
         'juego.setPosicion' (idJuego, setLatitud, setLongitud) {
-            /*check(taskId, String);
-            check(setChecked, Boolean);*/
-            //const tesoro = tesoros.findOne(idTesoro);
-            /*if (tesoro.private && task.owner !== Meteor.userId()) {
-                // If the task is private, make sure only the owner can delete it
-                throw new Meteor.Error('not-authorized');
-            }*/
+            var color;
             var jugada = juego.find({
                 _id: idJuego
             });
@@ -41,12 +35,22 @@ if (Meteor.isServer) {
                 _id: jugada.fetch()[0].idTesoro
             });
             var distancia = Meteor.call('getKilometros', setLatitud, setLongitud, tesoro.fetch()[0].latitud, tesoro.fetch()[0].longitud);
+            if (distancia <= 0.5) {
+                color = "rgb(0, 255, 0);"; //verde
+            } else {
+                if (distancia <= 2) {
+                    color = "rgb(255, 255, 0);"; //amarillo
+                } else {
+                    color = "rgb(255, 0, 0);"; //rojo
+                }
+            }
             var aviso = distancia < 0.5;
             juego.update(idJuego, {
                 $set: {
                     latitud: setLatitud,
                     longitud: setLongitud,
-                    avisoEncontrado: aviso
+                    avisoEncontrado: aviso,
+                    colorDistancia: color
                 }
             });
         },
@@ -78,7 +82,11 @@ if (Meteor.isServer) {
                 _id: idJuego
             });
             //Meteor.call('tesoros.setUsado', tesoro.fetch()[0].idTesoro, false);
-            tesoros.update(tesoro.fetch()[0].idTesoro, { $set: { usado: false } });
+            tesoros.update(tesoro.fetch()[0].idTesoro, {
+                $set: {
+                    usado: false
+                }
+            });
             juego.update(idJuego, {
                 $set: {
                     abandonado: true
