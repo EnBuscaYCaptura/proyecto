@@ -1,17 +1,28 @@
-import { Accounts } from 'meteor/accounts-base';
-import {Meteor} from 'meteor/meteor';
-import { Bert } from 'meteor/themeteorchef:bert';
-import { GoogleAccounts } from 'meteor/accounts-google';
-import { ServiceConfiguration } from 'meteor/service-configuration';
+import {
+    Accounts
+} from 'meteor/accounts-base';
+import {
+    Meteor
+} from 'meteor/meteor';
+import {
+    Bert
+} from 'meteor/themeteorchef:bert';
+import {
+    GoogleAccounts
+} from 'meteor/accounts-google';
+import {
+    ServiceConfiguration
+} from 'meteor/service-configuration';
 
 $(document).ready(function() {
-    
+
     /*
         Fullscreen background
     */
     $.backstretch("/img/fondo.jpeg");
 
-});/*
+});
+/*
 Meteor.startup(function() {
     $.backstretch("/img/fondo.jpeg");
 });
@@ -46,39 +57,39 @@ Template.acceso.onCreated(function(){
         and its resume field contains tokens used to keep you logged in between sessions.
 */
 Template.home.events({
-    'click .btn-logout':function(){
+    'click .btn-logout': function() {
         Meteor.logout();
     }
 });
 
 Template.registro.events({
-    'submit .FormularioRegistro': function (event) {
- 
+    'submit .FormularioRegistro': function(event) {
+
         event.preventDefault();
- 
- 
+
+
         var email = event.target.email.value;
         var contrasena = event.target.contrasena.value;
         var nombreAcceso = event.target.nombreAcceso.value;
         var nombreUsuario = event.target.nombreUsuario.value;
- 
         var usuarioApp = {email:email,profile:{nombreUsuario:nombreUsuario},username:nombreAcceso,password:contrasena};
-        console.log(usuarioApp);
         Accounts.createUser(usuarioApp,function(err){
-            console.log('crea el usuario');
-            console.log(err);
             /*if(!err) {
                 Router.go('/');
             }
 */
-            if ( err ) {
+            if (err ) {
                 Bert.alert( err.reason, 'danger' );
               } else {
                 Meteor.call( 'sendVerificationLink', ( err, response ) => {
                   if ( err ) {
                     Bert.alert( error.reason, 'danger' );
                   } else {
-                    Bert.alert( 'Correo de verificación enviado', 'success' );
+                    Bert.alert({
+                    hideDelay: 9000,
+                    message: 'Correo de verificación enviado',
+                    type: 'success'
+                    });
                   }
                 });
               }
@@ -99,37 +110,36 @@ Template.registro.events({
 });
 
 Template.acceso.events({
-    'submit .FormularioAcceso': function (event) {
+    'submit .FormularioAcceso': function(event) {
         event.preventDefault();
         var nombreAcceso = event.target.nombreAcceso.value;
         var contrasena = event.target.contrasena.value;
-        if(nombreAcceso || contrasena) {
-            Meteor.loginWithPassword(nombreAcceso,contrasena,function(err){
-                if ( err ) {
+        if (nombreAcceso || contrasena) {
+            Meteor.loginWithPassword(nombreAcceso, contrasena, function(err) {
+                if (err) {
                     /*
                     if(err.message === 'User not found [403]') {
                         Bert.alert('Usuario no encontrado', 'danger');
                     }*/
                     Bert.alert( 'Por favor, revise todos los campos', 'danger' );
-                } else 
-                {
+                } else {
                     Router.go('/');
                 }
             });
         } else {
             Bert.alert({
-              message: 'Debes completar todos los campos',
-              type: 'danger',
-              style: 'fixed-top',
-              icon: 'fa-times'
-            });
-   /*         Bert.alert({
                 message: 'Debes completar todos los campos',
-                type: 'success'
-            });*/
-           //Bert.alert( '<h1>Hiya</h1>', 'danger', 'growl-top-right' );
+                type: 'danger',
+                style: 'fixed-top',
+                icon: 'fa-times'
+            });
+            /*         Bert.alert({
+                         message: 'Debes completar todos los campos',
+                         type: 'success'
+                     });*/
+            //Bert.alert( '<h1>Hiya</h1>', 'danger', 'growl-top-right' );
         }
-        
+
     },
 
     /*'click .acceso-google': function (event) {
@@ -137,7 +147,6 @@ Template.acceso.events({
         Meteor.loginWithGoogle();
     },*/
 
-    'click [data-social-login]' ( event, template ) {
         /*const service = event.target.getAttribute( 'data-social-login' ),
               options = {
                 requestPermissions: [ 'email' ]
@@ -153,7 +162,7 @@ Template.acceso.events({
           }
         });*/
        // Meteor.loginWithGoogle({ loginStyle: 'popup' });
-
+/*
 
 Meteor.loginWithGoogle({
       requestPermissions: [],
@@ -167,17 +176,46 @@ Meteor.loginWithGoogle({
       }
     });
 
-  }
+  }*/
 
+    'click [data-social-login]' (event, template) {
+        const service = event.target.getAttribute('data-social-login'),
+            options = {
+                requestPermissions: ['email']
+            };
+        Meteor.loginWithGoogle();
+        if (service === 'loginWithGoogle') {
+            delete options.requestPermissions;
+        }
+
+        Meteor[service](options, (error) => {
+            if (error) {
+                Bert.alert(error.message, 'danger');
+            }
+        });
+    },
+    'submit .olvidarContrasenia' (event) {
+        event.preventDefault();
+        var email = event.target.email.value;
+        Meteor.call('enviarCorreoOlvidoContraseniaEmail', email, function(err) {
+            if (!err) {
+                Meteor.logout();
+                Router.go('/');
+            } else {
+                Bert.alert('Ningún correo coincide con el introducido', 'danger');
+            }
+        });
+
+    }
 });
 
 Template.modificarUsuario.events({
-    'submit .FormularioModificarUsuario': function (event) {
+    'submit .FormularioModificarUsuario': function(event) {
         event.preventDefault();
         var nombreU = event.target.nombreUsuario.value;
         var contrasena = event.target.contrasena.value;
         var emailMod = event.target.email.value;
-        
+
         //get old email
         console.log(Meteor.userId());
         const emailAntiguo = (Meteor.users.findOne(Meteor.userId())).emails[0].address;
@@ -186,11 +224,11 @@ Template.modificarUsuario.events({
         //add new email
         //Accounts.addEmail(Meteor.userId(), emailMod);
         console.log(emailAntiguo);
-       console.log(emailMod);
-       if (emailMod && emailMod.lenght !== 0) {
-           Meteor.call('eliminarEmail', emailAntiguo)
-           Meteor.call('anadirEmail', emailMod , function(err){
-                if(!err) {
+        console.log(emailMod);
+        if (emailMod && emailMod.lenght !== 0) {
+            Meteor.call('eliminarEmail', emailAntiguo)
+            Meteor.call('anadirEmail', emailMod, function(err) {
+                if (!err) {
                     Router.go('/listarTesoros');
                 }
             });
@@ -199,10 +237,16 @@ Template.modificarUsuario.events({
             Meteor.call('cambiarPass', contrasena);
         }
 
-        if (nombreU && nombreU.lenght !== 0){
-            Meteor.users.update({ _id: Meteor.userId()},  {$set: { 'profile.nombreUsuario': nombreU }});
+        if (nombreU && nombreU.lenght !== 0) {
+            Meteor.users.update({
+                _id: Meteor.userId()
+            }, {
+                $set: {
+                    'profile.nombreUsuario': nombreU
+                }
+            });
         }
-       
+
         //remove old email
         //Accounts.removeEmail(Meteor.userId(), oldEmail);
 
@@ -211,7 +255,6 @@ Template.modificarUsuario.events({
     'click .eliminar-cuenta': function () {
         Meteor.call('eliminarUsuario', function(err){
             if(!err) {
-                
                 Bert.alert({
                   hideDelay: 6000,
                   message: 'Hasta pronto, camarada',
@@ -225,7 +268,7 @@ Template.modificarUsuario.events({
 
 });
 
-
+/*
     AccountController = RouteController.extend({
     verifyEmail: function () {
         Accounts.verifyEmail(this.params.token, function () {
@@ -233,4 +276,4 @@ Template.modificarUsuario.events({
             Router.go('/');
         });
     }
-});
+});*/

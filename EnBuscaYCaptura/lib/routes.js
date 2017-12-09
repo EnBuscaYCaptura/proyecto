@@ -4,78 +4,78 @@ Router.configure({
     notFoundTemplate: 'notFound',
 });
 
-Router.route('/registro', function () {
+Router.route('/registro', function() {
     this.render('registro');
 });
- 
-Router.route('/acceso', function () {
+
+Router.route('/acceso', function() {
     this.render('acceso');
 });
 
-Router.route('/modificar' , function () {
+Router.route('/modificar', function() {
     this.render('modificarUsuario');
-}); 
- 
-Router.route('/', function () {
-     if(isHTTPS()){
-    this.render('home');
-  } else {
-    switchHTTPS();
-  }
-    //this.render('home');
 });
 
-
-
-/*Router.route('/', {
-    name: 'home',
-    template: 'home'
-});*/
+Router.route('/', function() {
+    if (isHTTPS()) {
+        this.render('home');
+    } else {
+        switchHTTPS();
+    }
+    //this.render('home');
+});
 
 Router.route('/agregarTesoro', {
     name: 'agregarTesoro'
 });
-Router.route('/listarTesoros', {
+Router.route('/listarTesoros', function() {
+    if (isHTTPS()) {
+        this.render('listarTesoros');
+    } else {
+        switchHTTPS();
+    }
+    //this.render('home');
+}, {
     name: 'listarTesoros'
 });
 Router.route('/juego/:_id', {
     name: 'visorMapa',
-   /* onAfterAction: function () {
-        juego.insert(
-                tesoro: _id,
-                usuario: Meteor.userid(),
-                latitud: 0,
-                longitud: 0,
-                createdAt: new Date(),
-                encontrado: false
-            );
-    }*/
-    data: function() { return juego.findOne({_id: this.params._id}); }
+    data: function() {
+        return juego.findOne({
+            _id: this.params._id
+        });
+    }
 });
-//Router.onBeforeAction('dataNotFound', {only: 'agregarTesoro'});
-
-/*Router.route('/checkYourEmail',{
+/*
+Router.route('/checkYourEmail', {
     template: 'checkYourEmail'
 });
 
-Router.route('/emailverified',{
+Router.route('/emailverified', {
     template: 'emailVerified'
 });
-Router.route('/verifyEmail/:token',{
+Router.route('/verifyEmail/:token', {
     controller: 'AccountController',
     action: 'verifyEmail'
-});
-
-AccountController = RouteController.extend({
-    verifyEmail: function(){
-        Accounts.verifyEmail(this.params.token, function(){
-            Router.go('/listarTesoros');
-        });
-    }
 });*/
 
-Router.map(function () {
-    
+AccountController = RouteController.extend({
+    verifyEmail: function() {
+        Accounts.verifyEmail(this.params.token, function() {
+            Bert.alert( 'Email verificado! Gracias!', 'success' );
+            Router.go('/');
+        });
+    },
+    resetPassword: function() {
+        Accounts.resetPassword(this.params.token,'YCHh2ku7', function() {
+            switchHTTPS();
+            Router.go('/modificar');
+        });
+    }
+});
+
+Router.map(function() {
+
     this.route('verifyEmail', {
         controller: 'AccountController',
         path: '/verify-email/:token',
@@ -90,5 +90,11 @@ Router.map(function () {
     this.route('checkemail', {
         path: '/checkemail',
         template: 'checkemail'
+    });
+
+    this.route('resetPassword', {
+        controller: 'AccountController',
+        path: '/reset-password/:token',
+        action: 'resetPassword'
     });
 });

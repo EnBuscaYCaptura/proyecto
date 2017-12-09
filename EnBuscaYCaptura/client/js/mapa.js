@@ -5,7 +5,6 @@ import {
     Template
 } from 'meteor/templating';
 
-
 if (Meteor.isClient) {
     var MAP_ZOOM = 17;
 
@@ -44,15 +43,20 @@ if (Meteor.isClient) {
                 map.instance.setCenter(marker.getPosition());
                 map.instance.setZoom(MAP_ZOOM);
                 //Guardar la posicion en la coleccion cada 5 segundos
-               // setTimeout(function() {
-                    if ($("[name='idJuego']") && $("[name='idJuego']").val() !== "" 
-                        && latLng.lat !== undefined && latLng.lng !== undefined) {
-                        var idJuego = $("[name='idJuego']").val();
-                        Meteor.call('juego.setPosicion', idJuego, latLng.lat, latLng.lng);
-                    }
-              //  }, 5000);
+                // setTimeout(function() {
+                if ($("[name='idJuego']") && $("[name='idJuego']").val() !== "" && latLng && latLng.lat !== undefined && latLng.lng !== undefined) {
+                    var idJuego = $("[name='idJuego']").val();
+                    Meteor.call('juego.setPosicion', idJuego, latLng.lat, latLng.lng);
+                }
+                //  }, 5000);
             });
         });
+    });
+
+    juego.find().observeChanges({
+        changed: function(id, fields) {
+            Bert.alert(fields.alerta.mensaje, fields.alerta.estado);
+        }
     });
 
     Template.mapa.helpers({
@@ -70,7 +74,6 @@ if (Meteor.isClient) {
             });
             // Initialize the map once we have the latLng.
             if (GoogleMaps.loaded() && latLng) {
-                //$('.gmnoprint').hide();
                 return {
                     center: new google.maps.LatLng(latLng.lat, latLng.lng),
                     zoom: MAP_ZOOM
@@ -99,6 +102,12 @@ if (Meteor.isClient) {
         'click .abandonar': function(event) {
             var idJuego = $("[name='idJuego']").val();
             Meteor.call('juego.abandonar', idJuego);
+            Router.go('/');
+        },
+        'click .btn-logout': function() {
+            var idJuego = $("[name='idJuego']").val();
+            Meteor.call('juego.abandonar', idJuego);
+            Meteor.logout();
             Router.go('/');
         }
     });

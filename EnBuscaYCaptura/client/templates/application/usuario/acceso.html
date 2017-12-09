@@ -28,7 +28,7 @@
             </div>
         </div>
     </div>
-    {{> loginButtons}}
+
     <div id="modalContrasena" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog">
       <div class="modal-content">
@@ -43,12 +43,14 @@
                             <div class="text-center">
                               <p>Si olvido su contraseña, introduzca su e-mail</p>
                                 <div class="panel-body">
-                                    <fieldset>
-                                        <div class="form-group">
-                                            <input class="form-control input-lg" placeholder="Correo electrónico" name="email" type="email">
-                                        </div>
-                                        <input class="btn btn-lg btn-primary btn-block" value="Enviar mi contraseña" type="submit">
-                                    </fieldset>
+                                    <form class="olvidarContrasenia">
+                                        <fieldset>
+                                            <div class="form-group">
+                                                <input class="form-control input-lg" placeholder="Correo electrónico" name="email" type="email">
+                                            </div>
+                                            <input class="btn btn-lg btn-primary btn-block" value="Enviar mi contraseña" type="submit">
+                                        </fieldset>
+                                    </form>
                                 </div>
                             </div>
                         </div>
