@@ -67,9 +67,23 @@ Template.registro.events({
         Accounts.createUser(usuarioApp,function(err){
             console.log('crea el usuario');
             console.log(err);
-            if(!err) {
+            /*if(!err) {
                 Router.go('/');
             }
+*/
+            if ( err ) {
+                Bert.alert( err.reason, 'danger' );
+              } else {
+                Meteor.call( 'sendVerificationLink', ( err, response ) => {
+                  if ( err ) {
+                    Bert.alert( error.reason, 'danger' );
+                  } else {
+                    Bert.alert( 'Correo de verificación enviado', 'success' );
+                  }
+                });
+              }
+              Meteor.logout();
+              Router.go('/');
             /*Meteor.call('sendVerificationLink',email,Meteor.userId(),function(err,res){
                     if(!err){
                         console.log('An email verification link has been sent to your account....Click the link to verify.');
@@ -96,9 +110,9 @@ Template.acceso.events({
                     if(err.message === 'User not found [403]') {
                         Bert.alert('Usuario no encontrado', 'danger');
                     }*/
-                Bert.alert( 'Por favor, revise todos los campos', 'danger' );
-          } else 
-                /*if(!err)*/ {
+                    Bert.alert( 'Por favor, revise todos los campos', 'danger' );
+                } else 
+                {
                     Router.go('/');
                 }
             });
@@ -124,7 +138,7 @@ Template.acceso.events({
     },*/
 
     'click [data-social-login]' ( event, template ) {
-        const service = event.target.getAttribute( 'data-social-login' ),
+        /*const service = event.target.getAttribute( 'data-social-login' ),
               options = {
                 requestPermissions: [ 'email' ]
               };
@@ -137,8 +151,24 @@ Template.acceso.events({
           if ( error ) {
             Bert.alert( error.message, 'danger' );
           }
-        });
+        });*/
+       // Meteor.loginWithGoogle({ loginStyle: 'popup' });
+
+
+Meteor.loginWithGoogle({
+      requestPermissions: [],
+      loginStyle: "popup"
+    }, function(err) {
+      if (err) {
+        // TODO Need to do something here with the error...
+        console.log('Error: ', err);
+      } else {
+        Router.go('home');
+      }
+    });
+
   }
+
 });
 
 Template.modificarUsuario.events({
@@ -179,9 +209,15 @@ Template.modificarUsuario.events({
         //Meteor.users.update({ _id: Meteor.userId(),  $set: { 'emails.address': emailMod }});
     },
     'click .eliminar-cuenta': function () {
-        console.log("wii");
         Meteor.call('eliminarUsuario', function(err){
             if(!err) {
+                
+                Bert.alert({
+                  hideDelay: 6000,
+                  message: 'Hasta pronto, camarada',
+                  type: 'info',
+                  icon: 'fa-remove'
+                  });
                 Router.go('/');
             }
         });
@@ -193,6 +229,7 @@ Template.modificarUsuario.events({
     AccountController = RouteController.extend({
     verifyEmail: function () {
         Accounts.verifyEmail(this.params.token, function () {
+            Bert.alert( 'Email verificado! Gracias!', 'success' );
             Router.go('/');
         });
     }

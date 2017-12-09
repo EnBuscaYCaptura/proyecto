@@ -59,5 +59,19 @@ Template.listarTesoros.events({
         _id: idjuego
       })
     }, 1000);
+  },
+
+  'click .segunda-verificacion-email' ( event, template ) {
+    Meteor.call( 'sendVerificationLink', ( error, response ) => {
+      if ( error ) {
+        Bert.alert( error.reason, 'danger' );
+      } else {
+        let email = Meteor.user().emails[ 0 ].address;
+        Bert.alert( `Verifiación enviada a ${ email }!`, 'success' );
+      }
+    });
   }
+
+
+
 });

@@ -1,7 +1,9 @@
 <template name="listarTesoros">
+{{> bertAlert}}
     <div class="pull-right">
             <button class="btn btn-oscuro btn-sm btn-logout">Salir</button>
     </div>
+    {{#if currentUser.emails.[0].verified}}
     <div class="row">
         <div class="col-xs-12 text-center">
             <h1>Bienvenido <strong>{{currentUser.profile.nombreUsuario}}</strong></h1>
@@ -18,6 +20,10 @@
         <a href="/modificar" class="btn btn-oscuro btn-sm btn-block">Modificar Usuario</a>
         <a class="btn btn-oscuro btn-sm btn-block" href="/agregarTesoro">Agregar tesoros</a>
     </div>
+    {{else}}
+      <h2>Debes verificar el email antes de usar la aplicación. <a href="#" class="segunda-verificacion-email">Volver a recibir email</a></h2>
+    {{/if}}
+
 </template>
 
 <!--

@@ -6,9 +6,17 @@ Meteor.startup(function() {
           return "Activar a la cuenta";
        },
        text(user, url) {
-        console.log(user);
-          return `${user.username}! Verifica tu e-mail a través de este link: ${url}`;
+      //  console.log(user);
+        // return `${user.username}! Verifica tu e-mail a través de este link: ${url}`;
+          let emailAddress   = user.emails[0].address,
+              urlWithoutHash = url.replace( '#/', '' ),
+              emailBody      = `${user.username}! Verifica tu e-mail a través de este link: ${urlWithoutHash}`;
+
+          return emailBody;
        }
+
+
+
     };
 
 
