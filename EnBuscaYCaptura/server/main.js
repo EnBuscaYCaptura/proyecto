@@ -21,6 +21,7 @@ Meteor.startup(() => {
             //Assets.getText("ca.pem")
        }
     });*/
+    
   smtp = {
     username: 'enbuscaycaptura.daw@gmail.com',
     password: 'proyectodaw2017',
@@ -82,8 +83,15 @@ Meteor.methods({
   /*sendVerificationLink: function(email,id){
     Accounts.sendVerificationEmail(id,email);
   }*/
+  eliminarUsuario: function() {
+    'use strict';
+    Meteor.users.remove(this.userId);
+    return true;
+  },
 
 });
+
+
 
 /*Accounts.urls.verifyEmail = function(token){
   return Meteor.absoluteUrl('verify-email/'+token);

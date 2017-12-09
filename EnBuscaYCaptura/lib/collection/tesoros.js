@@ -1,6 +1,7 @@
 tesoros = new Mongo.Collection('tesoros');
 
 if (Meteor.isServer) {
+
     Meteor.publish('tesoros', function tesorosPublication() {
         return tesoros.find({}, {
             fields: {
@@ -11,7 +12,9 @@ if (Meteor.isServer) {
             }
         });
     });
+
     Meteor.methods({
+
         'tesoros.insert' (nombre, descripcion, clave, latitud, longitud) {
             /* check(nombre, String);
             check(descripcion, String);
@@ -34,6 +37,7 @@ if (Meteor.isServer) {
                 usado: false
             });
         },
+
         'tesoros.setUsado' (idTesoro, setUsar) {
             /*check(taskId, String);
             check(setChecked, Boolean);*/
@@ -49,4 +53,5 @@ if (Meteor.isServer) {
             });
         },
     });
+
 }

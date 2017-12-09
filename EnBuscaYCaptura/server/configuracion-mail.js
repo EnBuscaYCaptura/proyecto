@@ -3,11 +3,11 @@ Meteor.startup(function() {
   Accounts.emailTemplates.siteName = 'En busca y captura';
   Accounts.emailTemplates.verifyEmail = {
        subject() {
-          return "Activate your account now!";
+          return "Activar a la cuenta";
        },
        text(user, url) {
         console.log(user);
-          return `Hey ${user.username}! Verify your e-mail by following this link: ${url}`;
+          return `${user.username}! Verifica tu e-mail a través de este link: ${url}`;
        }
     };
 

@@ -25,10 +25,28 @@
                         </div>
                     </div>
                     <button type="submit" class="btn btn-oscuro btn-sm btn-block">Modificar</button>
+                    <button type="button" class="btn btn-danger btn-sm btn-block" data-toggle="modal" data-target=".bs-modal-sm-{{_id}}">Eliminar Cuenta</button>
                 </form>
             </div>
         </div>
     </div>
+    <div class="modal bs-modal-sm-{{_id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">{{currentUser.profile.nombreUsuario}}, ¿Seguro que desea eliminar su cuenta?</h4>
+          </div>
+          <div class="modal-body">
+            <p>Recuerda que no hay vuelta atrás, una vez borres tu cuenta de usuario los piratas se harán con la cuenta y jamás podrás recuperarla, JA JA JA! Piénsatelo bien antes de tirar por la borda todos tus logros, camarada.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Me he arrepentido</button>
+            <button type="button" class="btn btn-danger eliminar-cuenta" data-dismiss="modal">Si, deseo eliminar mi cuenta</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
 </template>
 
     <!--

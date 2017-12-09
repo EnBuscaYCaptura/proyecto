@@ -25,6 +25,8 @@ Router.route('/', function () {
     //this.render('home');
 });
 
+
+
 /*Router.route('/', {
     name: 'home',
     template: 'home'
