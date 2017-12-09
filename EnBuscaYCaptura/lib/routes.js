@@ -28,7 +28,14 @@ Router.route('/', function() {
 Router.route('/agregarTesoro', {
     name: 'agregarTesoro'
 });
-Router.route('/listarTesoros', {
+Router.route('/listarTesoros',  function() {
+    if (isHTTPS()) {
+        this.render('listarTesoros');
+    } else {
+        switchHTTPS();
+    }
+    //this.render('home');
+},{
     name: 'listarTesoros'
 });
 Router.route('/juego/:_id', {
@@ -80,7 +87,8 @@ Router.route('/verifyEmail/:token',{
 AccountController = RouteController.extend({
     verifyEmail: function(){
         Accounts.verifyEmail(this.params.token, function(){
-            Router.go('/listarTesoros');
+            Meteor.logout();
+            Router.go('/');
         });
     }
 });
