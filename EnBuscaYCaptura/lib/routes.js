@@ -49,26 +49,23 @@ Router.route('/juego/:_id', {
         });
     }
 });
-
+/*
 Router.route('/verify-email/:token', function() {
     Accounts.verifyEmail(this.params.token);
     //this.render('listarTesoros');
-    this.go('/');
+    //this.render('home');
+    if (isHTTPS()) {
+        this.render('home');
+    } else {
+        switchHTTPS();
+    }
 }, {
     name: 'verify-email',
-   /* onAfterAction: function() {
-        console.log(this.params);
-        Accounts.verifyEmail(this.params.token);
-    },
-    onBeforeAction: function() {
-        console.log(this.params);
-        Accounts.verifyEmail(this.params.token);
-    }*/
-});
+});*/
 
 //Router.onBeforeAction('dataNotFound', {only: 'agregarTesoro'});
 
-/*Router.route('/checkYourEmail',{
+Router.route('/checkYourEmail',{
     template: 'checkYourEmail'
 });
 
@@ -86,8 +83,8 @@ AccountController = RouteController.extend({
             Router.go('/listarTesoros');
         });
     }
-});*/
-/*
+});
+
 Router.map(function () {
     
     this.route('verifyEmail', {
@@ -106,4 +103,3 @@ Router.map(function () {
         template: 'checkemail'
     });
 });
-*/

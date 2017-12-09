@@ -74,7 +74,8 @@ Template.registro.events({
                     }
                 });
                 //Router.go('/');
-            }            
+            }         
+            Meteor.logout();   
             /*Meteor.call('sendVerificationLink',email,Meteor.userId(),function(err,res){
                     if(!err){
                         console.log('An email verification link has been sent to your account....Click the link to verify.');
