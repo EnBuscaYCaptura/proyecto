@@ -1,4 +1,5 @@
 <template name="acceso">
+{{> bertAlert}}
     <div class="row">
         <div class="col-xs-12 contenedor-formulario">
             <div class="cabecera-formulario">
@@ -20,12 +21,52 @@
                     <button type="submit" class="btn btn-oscuro btn-sm btn-block">Acceder</button>
                 </form>
             </div>
+            <button data-social-login="loginWithGoogle" type="button" class="btn btn-oscuro btn-sm btn-block">Acceder con Google</button>
             <div class="formulario-pie">
                 <p>Y si aún no tienes cuenta, <a href="registro">regístrate.</a></p>
+                <p><a href="#" data-target="#modalContrasena" data-toggle="modal">¿Olvidó su contraseña?</a></p>
             </div>
         </div>
     </div>
+
+    <div id="modalContrasena" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+              <h1 class="text-center">¿Olvidó su contraseña?</h1>
+          </div>
+          <div class="modal-body">
+              <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="text-center">
+                              <p>Si olvido su contraseña, introduzca su e-mail</p>
+                                <div class="panel-body">
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <input class="form-control input-lg" placeholder="Correo electrónico" name="email" type="email">
+                                        </div>
+                                        <input class="btn btn-lg btn-primary btn-block" value="Enviar mi contraseña" type="submit">
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          </div>
+          <div class="modal-footer">
+              <div class="col-md-12">
+              <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+              </div>
+          </div>
+      </div>
+      </div>
+    </div>
+
 </template>
+
+
 
     <!--
             <div class="col-md-6 col-md-offset-3">

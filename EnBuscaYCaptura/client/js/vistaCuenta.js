@@ -1,4 +1,9 @@
 import { Accounts } from 'meteor/accounts-base';
+import {Meteor} from 'meteor/meteor';
+import { Bert } from 'meteor/themeteorchef:bert';
+import { GoogleAccounts } from 'meteor/accounts-google';
+import { ServiceConfiguration } from 'meteor/service-configuration';
+
 $(document).ready(function() {
     
     /*
@@ -84,13 +89,56 @@ Template.acceso.events({
         event.preventDefault();
         var nombreAcceso = event.target.nombreAcceso.value;
         var contrasena = event.target.contrasena.value;
+        if(nombreAcceso || contrasena) {
+            Meteor.loginWithPassword(nombreAcceso,contrasena,function(err){
+                if ( err ) {
+                    /*
+                    if(err.message === 'User not found [403]') {
+                        Bert.alert('Usuario no encontrado', 'danger');
+                    }*/
+                Bert.alert( 'Por favor, revise todos los campos', 'danger' );
+          } else 
+                /*if(!err)*/ {
+                    Router.go('/');
+                }
+            });
+        } else {
+            Bert.alert({
+              message: 'Debes completar todos los campos',
+              type: 'danger',
+              style: 'fixed-top',
+              icon: 'fa-times'
+            });
+   /*         Bert.alert({
+                message: 'Debes completar todos los campos',
+                type: 'success'
+            });*/
+           //Bert.alert( '<h1>Hiya</h1>', 'danger', 'growl-top-right' );
+        }
         
-        Meteor.loginWithPassword(nombreAcceso,contrasena,function(err){
-            if(!err) {
-                Router.go('/');
-            }
+    },
+
+    /*'click .acceso-google': function (event) {
+        event.preventDefault();
+        Meteor.loginWithGoogle();
+    },*/
+
+    'click [data-social-login]' ( event, template ) {
+        const service = event.target.getAttribute( 'data-social-login' ),
+              options = {
+                requestPermissions: [ 'email' ]
+              };
+              Meteor.loginWithGoogle();
+        if ( service === 'loginWithGoogle' ) {
+          delete options.requestPermissions;
+        }
+
+        Meteor[ service ]( options, ( error ) => {
+          if ( error ) {
+            Bert.alert( error.message, 'danger' );
+          }
         });
-    }
+  }
 });
 
 Template.modificarUsuario.events({
@@ -129,5 +177,23 @@ Template.modificarUsuario.events({
         //Accounts.removeEmail(Meteor.userId(), oldEmail);
 
         //Meteor.users.update({ _id: Meteor.userId(),  $set: { 'emails.address': emailMod }});
+    },
+    'click .eliminar-cuenta': function () {
+        console.log("wii");
+        Meteor.call('eliminarUsuario', function(err){
+            if(!err) {
+                Router.go('/');
+            }
+        });
+    }
+
+});
+
+
+    AccountController = RouteController.extend({
+    verifyEmail: function () {
+        Accounts.verifyEmail(this.params.token, function () {
+            Router.go('/');
+        });
     }
 });

@@ -25,6 +25,8 @@ Router.route('/', function () {
     //this.render('home');
 });
 
+
+
 /*Router.route('/', {
     name: 'home',
     template: 'home'
@@ -71,3 +73,22 @@ AccountController = RouteController.extend({
         });
     }
 });*/
+
+Router.map(function () {
+    
+    this.route('verifyEmail', {
+        controller: 'AccountController',
+        path: '/verify-email/:token',
+        action: 'verifyEmail'
+    });
+
+    this.route('verified', {
+        path: '/verified',
+        template: 'verified'
+    });
+
+    this.route('checkemail', {
+        path: '/checkemail',
+        template: 'checkemail'
+    });
+});

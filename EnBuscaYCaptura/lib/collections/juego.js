@@ -1,6 +1,7 @@
 juego = new Mongo.Collection('juego');
 
 if (Meteor.isServer) {
+
     Meteor.publish('juego', function juegoPublication(idJugador, bEncontrado, bAbandonado) {
         return juego.find({
             encontrado: bEncontrado,
@@ -8,7 +9,9 @@ if (Meteor.isServer) {
             idUsuario: idJugador
         });
     });
+
     Meteor.methods({
+
         'juego.insert' (idTesoro, idUsuario) {
             if (!Meteor.userId()) {
                 throw new Meteor.Error('not-authorized');
@@ -26,6 +29,7 @@ if (Meteor.isServer) {
                 abandonado: false
             });
         },
+
         'juego.setPosicion' (idJuego, setLatitud, setLongitud) {
             var color;
             var jugada = juego.find({
@@ -54,6 +58,7 @@ if (Meteor.isServer) {
                 }
             });
         },
+
         'juego.comprobar' (idJuego, clave) {
             var jugada = juego.find({
                 _id: idJuego
@@ -70,6 +75,7 @@ if (Meteor.isServer) {
                 });
             }
         },
+
         'juego.encontrar' (idJuego) {
             juego.update(idJuego, {
                 $set: {
@@ -77,6 +83,7 @@ if (Meteor.isServer) {
                 }
             });
         },
+
         'juego.abandonar' (idJuego) {
             var tesoro = juego.find({
                 _id: idJuego
@@ -93,5 +100,6 @@ if (Meteor.isServer) {
                 }
             });
         },
+
     });
 }
