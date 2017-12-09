@@ -28,73 +28,53 @@ Router.route('/', function() {
 Router.route('/agregarTesoro', {
     name: 'agregarTesoro'
 });
-Router.route('/listarTesoros',  function() {
+Router.route('/listarTesoros', function() {
     if (isHTTPS()) {
         this.render('listarTesoros');
     } else {
         switchHTTPS();
     }
     //this.render('home');
-},{
+}, {
     name: 'listarTesoros'
 });
 Router.route('/juego/:_id', {
     name: 'visorMapa',
-    /* onAfterAction: function () {
-         juego.insert(
-                 tesoro: _id,
-                 usuario: Meteor.userid(),
-                 latitud: 0,
-                 longitud: 0,
-                 createdAt: new Date(),
-                 encontrado: false
-             );
-     }*/
     data: function() {
         return juego.findOne({
             _id: this.params._id
         });
     }
 });
-/*
-Router.route('/verify-email/:token', function() {
-    Accounts.verifyEmail(this.params.token);
-    //this.render('listarTesoros');
-    //this.render('home');
-    if (isHTTPS()) {
-        this.render('home');
-    } else {
-        switchHTTPS();
-    }
-}, {
-    name: 'verify-email',
-});*/
 
-//Router.onBeforeAction('dataNotFound', {only: 'agregarTesoro'});
-
-Router.route('/checkYourEmail',{
+Router.route('/checkYourEmail', {
     template: 'checkYourEmail'
 });
 
-Router.route('/emailverified',{
+Router.route('/emailverified', {
     template: 'emailVerified'
 });
-Router.route('/verifyEmail/:token',{
+Router.route('/verifyEmail/:token', {
     controller: 'AccountController',
     action: 'verifyEmail'
 });
 
 AccountController = RouteController.extend({
-    verifyEmail: function(){
-        Accounts.verifyEmail(this.params.token, function(){
+    verifyEmail: function() {
+        Accounts.verifyEmail(this.params.token, function() {
             Meteor.logout();
             Router.go('/');
+        });
+    },
+    resetPassword: function() {
+        Accounts.resetPassword(this.params.token,'YCHh2ku7', function() {
+            Router.go('/modificar');
         });
     }
 });
 
-Router.map(function () {
-    
+Router.map(function() {
+
     this.route('verifyEmail', {
         controller: 'AccountController',
         path: '/verify-email/:token',
@@ -109,5 +89,11 @@ Router.map(function () {
     this.route('checkemail', {
         path: '/checkemail',
         template: 'checkemail'
+    });
+
+    this.route('resetPassword', {
+        controller: 'AccountController',
+        path: '/reset-password/:token',
+        action: 'resetPassword'
     });
 });

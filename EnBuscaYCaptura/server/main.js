@@ -9,7 +9,8 @@ import {
 } from 'meteor/email';
 //import '../imports/api/tesoros.js';
 
-Accounts.onEmailVerificationLink;/*(function (token, done) {
+Accounts.onEmailVerificationLink;
+/*(function (token, done) {
   console.log(token);
   console.log(done);
   return true;
@@ -26,19 +27,19 @@ Meteor.startup(() => {
             //Assets.getText("ca.pem")
        }
     });*/
-    
+
   smtp = {
     username: 'enbuscaycaptura.daw@gmail.com',
     password: 'proyectodaw2017',
-    server:   'smtp.gmail.com',
+    server: 'smtp.gmail.com',
     port: 587
   };
 
   process.env.MAIL_URL = 'smtp://' + encodeURIComponent(smtp.username) + ':' + encodeURIComponent(smtp.password) + '@' + encodeURIComponent(smtp.server) + ':' + smtp.port;
-    //process.env.MAIL_URL = "smtp://enbuscaycaptura.daw@gmail.com:proyectodaw2017@smtp.gmail.com:587";
+  //process.env.MAIL_URL = "smtp://enbuscaycaptura.daw@gmail.com:proyectodaw2017@smtp.gmail.com:587";
 
-    
-  SSL('C:/Users/Cristian/Desktop/Proyecto/EnBuscaYCaptura/private/buscacaptura.key', 
+
+  SSL('C:/Users/Cristian/Desktop/Proyecto/EnBuscaYCaptura/private/buscacaptura.key',
     'C:/Users/Cristian/Desktop/Proyecto/EnBuscaYCaptura/private/buscacaptura.crt', 443);
 
 });
@@ -63,12 +64,12 @@ Meteor.methods({
 
     Accounts.addEmail(this.userId, email);
     Accounts.sendVerificationEmail(this.userId, email);
-   /* Email.send({
-      to: "to.address@email.com",
-      from: "from.address@email.com",
-      subject: "Example Email",
-      text: "The contents of our email in plain text.",
-    });*/
+    /* Email.send({
+       to: "to.address@email.com",
+       from: "from.address@email.com",
+       subject: "Example Email",
+       text: "The contents of our email in plain text.",
+     });*/
     return true;
   },
 
@@ -94,6 +95,12 @@ Meteor.methods({
     Meteor.users.remove(this.userId);
     return true;
   },
+  enviarCorreoOlvidoContraseniaEmail: function(email) {
+    var usuario = Accounts.findUserByEmail(email);
+    if (usuario._id) {
+      Accounts.sendResetPasswordEmail(usuario._id, email);
+    }
+  }
 
 });
 
