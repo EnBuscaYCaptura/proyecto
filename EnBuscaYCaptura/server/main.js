@@ -7,26 +7,8 @@ import {
 import {
   Email
 } from 'meteor/email';
-//import '../imports/api/tesoros.js';
-
-Accounts.onEmailVerificationLink;
-/*(function (token, done) {
-  console.log(token);
-  console.log(done);
-  return true;
-});*/
 
 Meteor.startup(() => {
-  /*SSLProxy({
-       port: 443, //or 443 (normal port/requires sudo)
-       ssl : {
-            key: Assets.getText("enbuscaycaptura.key"),
-            cert: Assets.getText("enbuscaycaptura.crt"),
-            passphrase: 'enbuscaycaptura'
-            //Optional CA
-            //Assets.getText("ca.pem")
-       }
-    });*/
     ServiceConfiguration.configurations.remove({
     service: 'google'
   });
@@ -49,8 +31,8 @@ Meteor.startup(() => {
   //process.env.MAIL_URL = "smtp://enbuscaycaptura.daw@gmail.com:proyectodaw2017@smtp.gmail.com:587";
 
 
-  SSL('D:/PROYECTODAW/repositorio/EnBuscaYCaptura/private/buscacaptura.key',
-    'D:/PROYECTODAW/repositorio/EnBuscaYCaptura/private/buscacaptura.crt', 443);
+  SSL('C:/Users/Cristian/Desktop/Proyecto/EnBuscaYCaptura/private/buscacaptura.key',
+    'C:/Users/Cristian/Desktop/Proyecto/EnBuscaYCaptura/private/buscacaptura.crt', 443);
 
 });
 
