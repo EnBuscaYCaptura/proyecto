@@ -1,23 +1,28 @@
 <template name="listarTesoros">
-    <div class="pull-right">
-            <button class="btn btn-oscuro btn-sm btn-logout">Salir</button>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 text-center">
-            <h1>Bienvenido <strong>{{currentUser.profile.nombreUsuario}}</strong></h1>
-            <div class="textoInfoListadoTesoros">
-                <p>Elige un tesoro y a por el!</p>
+    {{#if currentUser.emails.[0].verified}}
+        <div class="pull-right">
+                <button class="btn btn-oscuro btn-sm btn-logout">Salir</button>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 text-center">
+
+                <h1>Bienvenido <strong>{{currentUser.profile.nombreUsuario}}</strong></h1>
+                <div class="textoInfoListadoTesoros">
+                    <p>Elige un tesoro y a por el!</p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="col-xs-12 fondo-tesoros">
-        
-        {{#each tesorosGuardados}}
-            {{> tesoro}}
-        {{/each}}
-        <a href="/modificar" class="btn btn-oscuro btn-sm btn-block">Modificar Usuario</a>
-        <a class="btn btn-oscuro btn-sm btn-block" href="/agregarTesoro">Agregar tesoros</a>
-    </div>
+        <div class="col-xs-12 fondo-tesoros">
+            
+            {{#each tesorosGuardados}}
+                {{> tesoro}}
+            {{/each}}
+            <a href="/modificar" class="btn btn-oscuro btn-sm btn-block">Modificar Usuario</a>
+            <a class="btn btn-oscuro btn-sm btn-block" href="/agregarTesoro">Agregar tesoros</a>
+        </div>
+    {{else}}
+      <h2>Tienes que verificar el email antes de entrar</h2>
+    {{/if}}
 </template>
 
 <!--

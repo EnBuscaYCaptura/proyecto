@@ -63,13 +63,18 @@ Template.registro.events({
         var nombreUsuario = event.target.nombreUsuario.value;
  
         var usuarioApp = {email:email,profile:{nombreUsuario:nombreUsuario},username:nombreAcceso,password:contrasena};
-        console.log(usuarioApp);
+      //  console.log(usuarioApp);
         Accounts.createUser(usuarioApp,function(err){
-            console.log('crea el usuario');
-            console.log(err);
             if(!err) {
-                Router.go('/');
-            }
+               // debugger;
+               // Accounts.sendVerificationEmail(Meteor.userId(), email);
+                Meteor.call('sendVerificationLink', Meteor.userId(), email , function(err){
+                    if(!err) {
+                        Router.go('/');
+                    }
+                });
+                //Router.go('/');
+            }            
             /*Meteor.call('sendVerificationLink',email,Meteor.userId(),function(err,res){
                     if(!err){
                         console.log('An email verification link has been sent to your account....Click the link to verify.');
@@ -179,7 +184,7 @@ Template.modificarUsuario.events({
         //Meteor.users.update({ _id: Meteor.userId(),  $set: { 'emails.address': emailMod }});
     },
     'click .eliminar-cuenta': function () {
-        console.log("wii");
+        //console.log("wii");
         Meteor.call('eliminarUsuario', function(err){
             if(!err) {
                 Router.go('/');
@@ -189,11 +194,11 @@ Template.modificarUsuario.events({
 
 });
 
-
+/*
     AccountController = RouteController.extend({
     verifyEmail: function () {
         Accounts.verifyEmail(this.params.token, function () {
             Router.go('/');
         });
     }
-});
+});*/

@@ -9,6 +9,11 @@ import {
 } from 'meteor/email';
 //import '../imports/api/tesoros.js';
 
+Accounts.onEmailVerificationLink;/*(function (token, done) {
+  console.log(token);
+  console.log(done);
+  return true;
+});*/
 
 Meteor.startup(() => {
   /*SSLProxy({
@@ -33,8 +38,9 @@ Meteor.startup(() => {
     //process.env.MAIL_URL = "smtp://enbuscaycaptura.daw@gmail.com:proyectodaw2017@smtp.gmail.com:587";
 
     
-  SSL('D:/PROYECTODAW/repositorio/EnBuscaYCaptura/private/buscacaptura.key', 
-    'D:/PROYECTODAW/repositorio/EnBuscaYCaptura/private/buscacaptura.crt', 443);
+  SSL('C:/Users/Cristian/Desktop/Proyecto/EnBuscaYCaptura/private/buscacaptura.key', 
+    'C:/Users/Cristian/Desktop/Proyecto/EnBuscaYCaptura/private/buscacaptura.crt', 443);
+
 });
 
 Meteor.methods({
@@ -57,12 +63,12 @@ Meteor.methods({
 
     Accounts.addEmail(this.userId, email);
     Accounts.sendVerificationEmail(this.userId, email);
-    Email.send({
+   /* Email.send({
       to: "to.address@email.com",
       from: "from.address@email.com",
       subject: "Example Email",
       text: "The contents of our email in plain text.",
-    });
+    });*/
     return true;
   },
 

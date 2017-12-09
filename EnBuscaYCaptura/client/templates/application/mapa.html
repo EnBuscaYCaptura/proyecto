@@ -21,6 +21,7 @@
   </div><!-- /.container-fluid -->
 </nav>
   <div class="map-container">
+    {{> bertAlert}}
     {{#unless geolocationError}}
       {{#if avisoEncontrado}}
       <form class="avisoEncontrado">
@@ -47,6 +48,7 @@
       {{/each}}
       {{> googleMap name="map" options=mapOptions}}
       <div class="distancia"  style="background-color:{{colorDistancia}}">Indicador de distancia</div>
+      <div class="tiempo" id="contador"></div>
     {{else}}
       Geolocation failed: {{geolocationError}}
     {{/unless}}
