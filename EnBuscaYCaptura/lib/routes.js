@@ -5,15 +5,30 @@ Router.configure({
 });
 
 Router.route('/registro', function() {
-    this.render('registro');
+    //this.render('registro');
+    if (isHTTPS()) {
+        this.render('registro');
+    } else {
+        switchHTTPS();
+    }
 });
 
 Router.route('/acceso', function() {
-    this.render('acceso');
+    //this.render('acceso');
+    if (isHTTPS()) {
+        this.render('acceso');
+    } else {
+        switchHTTPS();
+    }
 });
 
 Router.route('/modificar', function() {
-    this.render('modificarUsuario');
+    // this.render('modificarUsuario');
+    if (isHTTPS()) {
+        this.render('modificarUsuario');
+    } else {
+        switchHTTPS();
+    }
 });
 
 Router.route('/', function() {
@@ -25,7 +40,13 @@ Router.route('/', function() {
     //this.render('home');
 });
 
-Router.route('/agregarTesoro', {
+Router.route('/agregarTesoro', function() {
+    if (isHTTPS()) {
+        this.render('agregarTesoro');
+    } else {
+        switchHTTPS();
+    }
+}, {
     name: 'agregarTesoro'
 });
 Router.route('/listarTesoros', function() {
@@ -46,30 +67,18 @@ Router.route('/juego/:_id', {
         });
     }
 });
-/*
-Router.route('/checkYourEmail', {
-    template: 'checkYourEmail'
-});
-
-Router.route('/emailverified', {
-    template: 'emailVerified'
-});
-Router.route('/verifyEmail/:token', {
-    controller: 'AccountController',
-    action: 'verifyEmail'
-});*/
 
 AccountController = RouteController.extend({
     verifyEmail: function() {
         Accounts.verifyEmail(this.params.token, function() {
-            Bert.alert( 'Email verificado! Gracias!', 'success' );
+            Bert.alert('Email verificado! Gracias!', 'success');
             Router.go('/');
         });
     },
     resetPassword: function() {
-        Accounts.resetPassword(this.params.token,'YCHh2ku7', function() {
-            switchHTTPS();
-            Router.go('/modificar');
+        Accounts.resetPassword(this.params.token, 'YCHh2ku7', function() {
+            Bert.alert('Su contraseña ha cambiado', 'success');
+            Router.go('/');
         });
     }
 });
