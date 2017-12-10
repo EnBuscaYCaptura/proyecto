@@ -164,3 +164,28 @@ color: #333 !important;
 .modal-comun .modal-footer button {
     background: #db8f5a;
 }
+
+.usuario{
+    color: #a1825e;
+    border-color: transparent;
+}
+.usuario > button{
+    background: #381c10;
+}
+.usuario > ul{
+    border: transparent;
+}
+
+.usuario > ul>li> .btn{
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1.42857143;
+    color: #333;
+    white-space: nowrap;
+    background-color: white;
+    width: 100%;
+    text-align: left;
+}
+    

@@ -1,7 +1,17 @@
 <template name="listarTesoros">
 {{> bertAlert}}
     <div class="pull-right">
-        <button class="btn btn-oscuro btn-sm btn-logout">Salir</button>
+        <div class="dropdown usuario">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <i class="fa fa-user-circle" aria-hidden="true"></i>
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+              <li><a href="/modificar">Modificar Usuario</a></li>
+              <li><a href="/agregarTesoro">Agregar tesoros</a></li>
+              <li><button class="btn btn-logout">Salir</button></li>
+            </ul>
+        </div>
     </div>
     {{#if currentUser.emails.[0].verified}}
     <div class="row">
@@ -17,8 +27,6 @@
         {{#each tesorosGuardados}}
             {{> tesoro}}
         {{/each}}
-        <a href="/modificar" class="btn btn-oscuro btn-sm btn-block">Modificar Usuario</a>
-        <a class="btn btn-oscuro btn-sm btn-block" href="/agregarTesoro">Agregar tesoros</a>
     </div>
     {{else}}
       <h2>Debes verificar el email antes de usar la aplicación. <a href="#" class="segunda-verificacion-email">Volver a recibir email</a></h2>
