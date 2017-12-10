@@ -31,7 +31,8 @@ if (Meteor.isClient) {
                 if (!marker) {
                     marker = new google.maps.Marker({
                         position: new google.maps.LatLng(latLng.lat, latLng.lng),
-                        map: map.instance
+                        map: map.instance,
+                        icon: '/img/marcador.png'
                     });
                 }
                 // The marker already exists, so we'll just change its position.

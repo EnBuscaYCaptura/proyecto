@@ -1,4 +1,4 @@
-import '../templates/application/tesoro.html'
+//import '../templates/application/tesoro.html'
 
 Template.listarTesoros.onCreated(function bodyOnCreated() {
   Meteor.subscribe('tesoros');

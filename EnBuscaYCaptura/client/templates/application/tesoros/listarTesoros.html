@@ -1,0 +1,39 @@
+<template name="listarTesoros">
+{{> bertAlert}}
+    <div class="pull-right">
+        <div class="dropdown usuario">
+            <button class="btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <i class="fa fa-user-circle" aria-hidden="true"></i>
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+              <li><a href="/modificar">Modificar Usuario</a></li>
+              <li><a href="/agregarTesoro">Agregar tesoros</a></li>
+              <li><button class="btn btn-logout">Salir</button></li>
+            </ul>
+        </div>
+    </div>
+    {{#if currentUser.emails.[0].verified}}
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <h1>Bienvenido <strong>{{currentUser.profile.nombreUsuario}}</strong></h1>
+            <div class="textoInfoListadoTesoros">
+                <p>Las reglas son sencillas, debes elegir un tesoro e ir a por el, pero ¡CUIDADO!, tienes que ser rápido. Una vez encuentres el tesoro introduce la clave que hay en su interior y será tuyo. Parece sencillo, ¿Verdad? No te equivoques, JA JA JA quizá debas de abandonar antes de lo esperado</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 fondo-tesoros">
+        
+        {{#each tesorosGuardados}}
+            {{> tesoro}}
+        {{/each}}
+    </div>
+    {{else}}
+      <h2>Debes verificar el email antes de usar la aplicación. <a href="#" class="segunda-verificacion-email">Volver a recibir email</a></h2>
+    {{/if}}
+</template>
+
+<!--
+<h1>Bienvenido {{currentUser.profile.nombreUsuario}}</h1>
+-->
+
