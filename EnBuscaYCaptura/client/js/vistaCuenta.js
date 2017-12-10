@@ -7,12 +7,6 @@ import {
 import {
     Bert
 } from 'meteor/themeteorchef:bert';
-import {
-    GoogleAccounts
-} from 'meteor/accounts-google';
-import {
-    ServiceConfiguration
-} from 'meteor/service-configuration';
 
 $(document).ready(function() {
 

@@ -41,7 +41,7 @@ if (Meteor.isServer) {
                 _id: jugada.fetch()[0].idTesoro
             });
             var distancia = Meteor.call('getKilometros', setLatitud, setLongitud, tesoro.fetch()[0].latitud, tesoro.fetch()[0].longitud);
-            if (distancia <= 0.5) {
+            if (distancia <= 1) {
                 color = "rgb(0, 255, 0);"; //verde
                 alerta = {
                         mensaje: "Estas muy cerca",
@@ -49,7 +49,7 @@ if (Meteor.isServer) {
                     }
                     //Bert.alert( 'Estas muy cerca', 'success' );
             } else {
-                if (distancia <= 2) {
+                if (distancia <= 5) {
                     color = "rgb(255, 255, 0);"; //amarillo
                     alerta = {
                             mensaje: "Te estas acercando",

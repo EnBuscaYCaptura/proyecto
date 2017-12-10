@@ -9,17 +9,7 @@ import {
 } from 'meteor/email';
 
 Meteor.startup(() => {
-    ServiceConfiguration.configurations.remove({
-    service: 'google'
-  });
-
-  ServiceConfiguration.configurations.insert({
-      service: 'google',
-      clientId: '605869571439-r53mhkahk4a15d6p91len2lbseojgjm7.apps.googleusercontent.com',
-      secret: '11Kt9O-HfgIcsuY6JXQV4BV6',
-      loginStyle: "popup"
-  });
-
+  
   smtp = {
     username: 'enbuscaycaptura.daw@gmail.com',
     password: 'proyectodaw2017',
