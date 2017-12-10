@@ -21,9 +21,8 @@ Meteor.startup(() => {
   //process.env.MAIL_URL = "smtp://enbuscaycaptura.daw@gmail.com:proyectodaw2017@smtp.gmail.com:587";
 
 
-  SSL('C:/Users/Cristian/Desktop/Proyecto/EnBuscaYCaptura/private/buscacaptura.key',
-    'C:/Users/Cristian/Desktop/Proyecto/EnBuscaYCaptura/private/buscacaptura.crt', 443);
-
+  SSL('D:/PROYECTODAW/repositorio/EnBuscaYCaptura/private/buscacaptura.key', 'D:/PROYECTODAW/repositorio/EnBuscaYCaptura/private/buscacaptura.crt', 443);
+ //SSL('C:/Users/Cristian/Desktop/Proyecto/EnBuscaYCaptura/private/buscacaptura.key', 'C:/Users/Cristian/Desktop/Proyecto/EnBuscaYCaptura/private/buscacaptura.crt', 443);
 });
 
 Meteor.methods({
