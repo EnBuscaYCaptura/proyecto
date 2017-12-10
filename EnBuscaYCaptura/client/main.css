@@ -188,4 +188,7 @@ color: #333 !important;
     width: 100%;
     text-align: left;
 }
-    
+
+.map-container .panel-tesoros-principal{
+    color: black;
+}

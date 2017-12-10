@@ -11,26 +11,27 @@
       </ul>
     </div>
   </div>
+  <div class="clearfix"></div>
   <div class="map-container">
     {{> bertAlert}}
     {{#unless geolocationError}}
       {{#if avisoEncontrado}}
       <form class="avisoEncontrado">
-        <div class="panel panel-default">
-          <div class="panel-heading">Estas cerca de un tesoro</div>
+        <div class="panel panel-default panel-tesoros-principal">
+          <div class="panel-heading panel-tesoros-head">Estas cerca de un tesoro</div>
           <div class="panel-body">
             <input type="text" name="clave" placeholder="Introduce la clave del tesoro" />
-            <input type="submit" name="enviar" class="btn btn-primary" value="Comprobar"/>
+            <input type="submit" name="enviar" class="btn boton-tesoros" value="Comprobar"/>
           </div>
         </div>
       </form>
       {{/if}}
       {{#if horaFinal}}
-        <div class="panel panel-default encontrado">
-          <div class="panel-heading">Felicidades!!!</div>
+        <div class="panel panel-default encontrado panel-tesoros-principal">
+          <div class="panel-heading panel-tesoros-head">Felicidades!!!</div>
           <div class="panel-body">
             <span>Has encontrado el tesoro</span>
-            <button class="btn btn-primary volver">Volver</button>
+            <button class="btn boton-tesoros volver">Volver</button>
           </div>
         </div>
       {{/if}}
@@ -39,7 +40,6 @@
       {{/each}}
       {{> googleMap name="map" options=mapOptions}}
       <div class="distancia"  style="background-color:{{colorDistancia}}">Indicador de distancia</div>
-      <div class="tiempo" id="contador"></div>
     {{else}}
       Geolocation failed: {{geolocationError}}
     {{/unless}}
