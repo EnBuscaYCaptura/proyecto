@@ -1,18 +1,6 @@
-import {
-    Accounts
-} from 'meteor/accounts-base';
-import {
-    Meteor
-} from 'meteor/meteor';
-import {
-    Bert
-} from 'meteor/themeteorchef:bert';
-import {
-    GoogleAccounts
-} from 'meteor/accounts-google';
-import {
-    ServiceConfiguration
-} from 'meteor/service-configuration';
+import { Accounts } from 'meteor/accounts-base';
+import { Meteor } from 'meteor/meteor';
+import { Bert } from 'meteor/themeteorchef:bert';
 
 $(document).ready(function() {
 
@@ -133,12 +121,20 @@ Template.modificarUsuario.events({
             Meteor.call('eliminarEmail', emailAntiguo)
             Meteor.call('anadirEmail', emailMod, function(err) {
                 if (!err) {
-                    Router.go('/listarTesoros');
+                  Bert.alert({
+                  hideDelay: 6000,
+                  message: 'Recuerde verificar el nuevo email para seguir usando la aplicación',
+                  type: 'info',
+                  icon: 'fa-envelope-o'
+                  });
+                  Router.go('/listarTesoros');
+
                 }
             });
         }
         if (contrasena && contrasena.lenght !== 0) {
             Meteor.call('cambiarPass', contrasena);
+            Router.go('/listarTesoros');
         }
 
         if (nombreU && nombreU.lenght !== 0) {
@@ -149,7 +145,9 @@ Template.modificarUsuario.events({
                     'profile.nombreUsuario': nombreU
                 }
             });
+            Router.go('/listarTesoros');
         }
+        Bert.alert('Datos modificados', 'success');
     },
     
     'click .eliminar-cuenta': function () {

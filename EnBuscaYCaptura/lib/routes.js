@@ -68,8 +68,8 @@ AccountController = RouteController.extend({
     },
     resetPassword: function() {
         Accounts.resetPassword(this.params.token,'YCHh2ku7', function() {
-            switchHTTPS();
-            Router.go('/modificar');
+            //switchHTTPS();
+            Router.go('/');
         });
     }
 });
