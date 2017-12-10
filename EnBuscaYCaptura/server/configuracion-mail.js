@@ -8,9 +8,6 @@ Meteor.startup(function() {
       return "Activar a la cuenta";
     },
     text(user, url) {
-      //console.log(user);
-      /*  urlWithoutHash = url.replace( '#/', '' ),
-          return `${user.username}! Verifica tu e-mail a través de este link: ${urlWithoutHash}`;*/
       let emailAddress = user.emails[0].address,
         urlWithoutHash = url.replace('#/', ''),
         urlFinal = urlWithoutHash.replace('localhost', IPMAIL),
@@ -24,9 +21,6 @@ Meteor.startup(function() {
       return "Olvido su contraseña";
     },
     text(user, url) {
-      //console.log(user);
-      /*  urlWithoutHash = url.replace( '#/', '' ),
-          return `${user.username}! Verifica tu e-mail a través de este link: ${urlWithoutHash}`;*/
       let emailAddress = user.emails[0].address,
         urlWithoutHash = url.replace('#/', ''),
         urlFinal = urlWithoutHash.replace('localhost', IPMAIL),

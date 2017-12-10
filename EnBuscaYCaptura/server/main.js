@@ -1,12 +1,7 @@
-import {
-  Meteor
-} from 'meteor/meteor';
-import {
-  Accounts
-} from 'meteor/accounts-base';
-import {
-  Email
-} from 'meteor/email';
+import { Meteor } from 'meteor/meteor';
+import { Accounts } from 'meteor/accounts-base';
+import { Email } from 'meteor/email';
+import './const.js';
 
 import './const.js';
 Meteor.startup(() => {
@@ -18,12 +13,10 @@ Meteor.startup(() => {
     port: 587
   };
 
-  process.env.MAIL_URL = 'smtp://' + encodeURIComponent(smtp.username) + ':' + encodeURIComponent(smtp.password) + '@' + encodeURIComponent(smtp.server) + ':' + smtp.port;
+  process.env.MAIL_URL = 'smtp://' + encodeURIComponent(smtp.username) + ':'
+    + encodeURIComponent(smtp.password) + '@' + encodeURIComponent(smtp.server) + ':' + smtp.port;
   //process.env.MAIL_URL = "smtp://enbuscaycaptura.daw@gmail.com:contraseña@smtp.gmail.com:587";
-
-
-  SSL(URLCERTIFICADOSSL+'private/buscacaptura.key', URLCERTIFICADOSSL + 'private/buscacaptura.crt', 443);
-
+  SSL(URLCERTIFICADOSSL + 'private/buscacaptura.key',URLCERTIFICADOSSL + 'private/buscacaptura.crt', 443);
 });
 
 Meteor.methods({
