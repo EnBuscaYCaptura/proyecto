@@ -9,7 +9,7 @@ import {
 } from 'meteor/email';
 //import '../imports/api/tesoros.js';
 
-Accounts.onEmailVerificationLink;
+//Accounts.onEmailVerificationLink;
 /*(function (token, done) {
   console.log(token);
   console.log(done);
