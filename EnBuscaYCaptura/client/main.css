@@ -132,3 +132,35 @@ color: #333 !important;
     background-color: #381c10;
     border-color: transparent;
 }
+
+.modal-comun div {
+    background-color: #f2c18e;
+}
+.modal-comun .modal-header {
+    /*color: #a4ffeb;
+       border-color: #37bee0; */
+    color: #6B151D;
+    background-color: #DB8F5A;
+    border-color: #A8553A;
+    border-bottom-width: 2px;
+}
+.modal-comun .close{
+    color: white;
+    opacity: 1;
+}
+.modal-comun .panel {
+    border: unset;
+    color: #2E1615;
+}
+.modal-comun .modal-body  input[type="submit"]{
+    background: #6B151D;
+}
+.modal-comun .modal-content {
+    border: 2px solid black;
+}
+.modal-comun .modal-footer {
+    border-top: unset;
+}
+.modal-comun .modal-footer button {
+    background: #db8f5a;
+}
