@@ -41,7 +41,7 @@ if (Meteor.isServer) {
                 _id: jugada.fetch()[0].idTesoro
             });
             var distancia = Meteor.call('getKilometros', setLatitud, setLongitud, tesoro.fetch()[0].latitud, tesoro.fetch()[0].longitud);
-            if (distancia <= 0.5) {
+            if (distancia <= 1) {
                 color = "rgb(0, 255, 0);"; //verde
                 alerta = {
                         mensaje: "Estas muy cerca",
@@ -49,7 +49,7 @@ if (Meteor.isServer) {
                     }
                     //Bert.alert( 'Estas muy cerca', 'success' );
             } else {
-                if (distancia <= 2) {
+                if (distancia <= 5) {
                     color = "rgb(255, 255, 0);"; //amarillo
                     alerta = {
                             mensaje: "Te estas acercando",
@@ -57,12 +57,20 @@ if (Meteor.isServer) {
                         }
                         // Bert.alert( 'Te estas acercando', 'warning' );
                 } else {
-                    color = "rgb(255, 0, 0);"; //rojo
-                    alerta = {
+                    if (distancia < 10) {
+                        color = "rgb(255, 0, 0);"; //rojo
+                        alerta = {
                             mensaje: "Estas muy lejos",
                             estado: "danger"
                         }
-                        //  Bert.alert( 'Estas muy lejos', 'danger' );
+                    } else {
+                        color = "rgb(0, 0, 0);"; //negro
+                        alerta = {
+                                mensaje: "Estas muy pero que muy lejos, a más de 10 km. ¿Estas seguro que quieres ir a por él? Te recuerdo que puedes abandonar la busqueda",
+                                estado: "danger"
+                            }
+                            //  Bert.alert( 'Estas muy lejos', 'danger' );
+                    }
                 }
             }
             var aviso = distancia < 0.5;
@@ -111,6 +119,16 @@ if (Meteor.isServer) {
                     $set: {
                         avisoEncontrado: false,
                         horaFinal: new Date()
+                    }
+                });
+            } else {
+                alerta = {
+                    mensaje: clave + " es incorrecto",
+                    estado: "danger"
+                }
+                juego.update(idJuego, {
+                    $set: {
+                        alerta: alerta
                     }
                 });
             }
