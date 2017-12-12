@@ -3,7 +3,6 @@ import { Accounts } from 'meteor/accounts-base';
 import { Email } from 'meteor/email';
 import './const.js';
 
-import './const.js';
 Meteor.startup(() => {
   
   smtp = {

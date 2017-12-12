@@ -1,5 +1,3 @@
-//import '../templates/application/tesoro.html'
-
 Template.listarTesoros.onCreated(function bodyOnCreated() {
   Meteor.subscribe('tesoros');
 });
@@ -51,8 +49,9 @@ Template.listarTesoros.events({
         Bert.alert( `Verifiación enviada a ${ email }!`, 'success' );
       }
     });
+  },
+  'click .btn-logout': function() {
+      Meteor.logout();
+      Router.go('/');
   }
-
-
-
 });
