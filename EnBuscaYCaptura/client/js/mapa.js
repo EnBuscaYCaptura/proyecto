@@ -1,9 +1,4 @@
-//import { GoogleMaps } from 'meteor/dburles:google-maps';
-//import { Meteor } from 'meteor/meteor';
-
-import {
-    Template
-} from 'meteor/templating';
+import { Template } from 'meteor/templating';
 
 if (Meteor.isClient) {
     var MAP_ZOOM = 17;
