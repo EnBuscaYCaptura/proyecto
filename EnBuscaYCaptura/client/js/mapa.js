@@ -95,6 +95,7 @@ if (Meteor.isClient) {
         'click .btn-logout': function() {
             var idJuego = $("[name='idJuego']").val();
             Meteor.call('juego.abandonar', idJuego);
+            suscripcionTesoros.stop();
             Meteor.logout();
             Router.go('/');
         }

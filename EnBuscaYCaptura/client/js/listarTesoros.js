@@ -1,12 +1,11 @@
 Template.listarTesoros.onCreated(function bodyOnCreated() {
-  Meteor.subscribe('tesoros');
+  suscripcionTesoros = Meteor.subscribe('tesoros', false);
 });
 
 Template.listarTesoros.helpers({
   tesorosGuardados() {
-    return tesoros.find({
-      usado: false
-    }, {
+    //Meteor.subscribe('tesoros', false);
+    return tesoros.find({}, {
       sort: {
         createdAt: -1
       }
@@ -51,6 +50,7 @@ Template.listarTesoros.events({
     });
   },
   'click .btn-logout': function() {
+      suscripcionTesoros.stop();
       Meteor.logout();
       Router.go('/');
   }
