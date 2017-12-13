@@ -39,12 +39,6 @@ Meteor.methods({
 
     Accounts.addEmail(this.userId, email);
     Accounts.sendVerificationEmail(this.userId, email);
-    /* Email.send({
-       to: "to.address@email.com",
-       from: "from.address@email.com",
-       subject: "Example Email",
-       text: "The contents of our email in plain text.",
-     });*/
     return true;
   },
 
@@ -62,9 +56,6 @@ Meteor.methods({
     return true;
   },
 
-  /*sendVerificationLink: function(email,id){
-    Accounts.sendVerificationEmail(id,email);
-  }*/
   eliminarUsuario: function() {
     'use strict';
     Meteor.users.remove(this.userId);

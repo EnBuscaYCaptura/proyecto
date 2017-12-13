@@ -45,39 +45,3 @@
     {{/unless}}
   </div>
 </template>
-<!--<template name="mapa">
-  <div id="map"></div>
-    <script>
-        posicion = {};
-      var options = {
-          enableHighAccuracy: true,
-          timeout: 5000,
-          maximumAge: 0
-        };
-
-    function success(pos) {
-        var crd = pos.coords;
-        posicion = {lat: crd.latitude, lng: crd.longitude};
-    };
-
-    function error(err) {
-      alert('ERROR(' + err.code + '): ' + err.message);
-    };
-    navigator.geolocation.getCurrentPosition(success, error, options);
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 17,
-          center: posicion
-        });
-        var marker = new google.maps.Marker({
-          position: posicion,
-          map: map
-        });
-      }
-      //debugger;
-      //setInterval(guardar(),5000);
-    </script>
-  <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD1jsmXmxDgSIamZGd9bi7KDE76A_KD0oY&callback=initMap">
-    </script>
-</template>-->

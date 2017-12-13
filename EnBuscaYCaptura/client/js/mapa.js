@@ -15,14 +15,11 @@ if (Meteor.isClient) {
 
         GoogleMaps.ready('map', function(map) {
             var marker;
-
-            // Create and move the marker when latLng changes.
             self.autorun(function() {
                 var latLng = Geolocation.latLng();
                 if (!latLng)
                     return;
 
-                // If the marker doesn't yet exist, create it.
                 if (!marker) {
                     marker = new google.maps.Marker({
                         position: new google.maps.LatLng(latLng.lat, latLng.lng),
@@ -30,21 +27,16 @@ if (Meteor.isClient) {
                         icon: '/img/marcador.png'
                     });
                 }
-                // The marker already exists, so we'll just change its position.
                 else {
                     marker.setPosition(latLng);
                 }
 
-                // Center and zoom the map view onto the current position.
                 map.instance.setCenter(marker.getPosition());
                 map.instance.setZoom(MAP_ZOOM);
-                //Guardar la posicion en la coleccion cada 5 segundos
-                // setTimeout(function() {
                 if ($("[name='idJuego']") && $("[name='idJuego']").val() !== "" && latLng && latLng.lat !== undefined && latLng.lng !== undefined) {
                     var idJuego = $("[name='idJuego']").val();
                     Meteor.call('juego.setPosicion', idJuego, latLng.lat, latLng.lng);
                 }
-                //  }, 5000);
             });
         });
     });
